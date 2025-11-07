@@ -1,0 +1,210 @@
+/* ============================================================
+   Amarii Productions Inc — Dark Botanical Theme
+   Version: 2.0
+   Author: Amarii Productions Inc
+   Description: Minimalist, dark, and organic visual system.
+   ============================================================ */
+
+/* ---------- Root Palette ---------- */
+:root {
+  --black: #0b0c0a;
+  --moss: #1c2a22;
+  --copper: #c47f53;
+  --sage: #4e5b52;
+  --paper: #e9e6e1;
+  --accent: #d89d73;
+}
+
+/* ---------- Global Reset ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--black);
+  color: var(--paper);
+  font-family: "Inter", sans-serif;
+  line-height: 1.7;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- Typography ---------- */
+h1, h2, h3, h4 {
+  font-family: "Playfair Display", serif;
+  color: var(--copper);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+p, li, a, span {
+  font-size: 1rem;
+  color: var(--paper);
+}
+
+/* ---------- Header & Navigation ---------- */
+header {
+  background: var(--moss);
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 1px solid var(--sage);
+}
+
+header h1 {
+  font-size: 1.8rem;
+  color: var(--copper);
+  margin-bottom: 0.5rem;
+}
+
+nav a {
+  color: var(--paper);
+  text-decoration: none;
+  margin: 0 0.5rem;
+  font-weight: 500;
+  transition: color 0.3s ease, border-color 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+
+nav a:hover {
+  color: var(--copper);
+  border-color: var(--copper);
+}
+
+/* ---------- Hero Section ---------- */
+.hero {
+  text-align: center;
+  padding: 5rem 2rem;
+  background: linear-gradient(to bottom, var(--black), var(--moss));
+}
+
+.hero h2 {
+  font-size: 2rem;
+  color: var(--paper);
+}
+
+.hero p {
+  margin: 1rem auto;
+  max-width: 600px;
+  color: var(--sage);
+}
+
+.hero .cta {
+  display: inline-block;
+  background: var(--copper);
+  color: var(--black);
+  padding: 0.75rem 1.5rem;
+  border-radius: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin-top: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.hero .cta:hover {
+  background: var(--accent);
+}
+
+/* ---------- Main Content ---------- */
+main.content {
+  flex: 1;
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+}
+
+main.content h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+main.content p {
+  margin-bottom: 1.2rem;
+  color: var(--paper);
+}
+
+/* ---------- Project Sections ---------- */
+.project {
+  border-top: 1px solid var(--sage);
+  margin: 3rem 0;
+  padding-top: 2rem;
+}
+
+.project h2 {
+  color: var(--copper);
+  font-size: 1.4rem;
+}
+
+.project p {
+  max-width: 700px;
+  margin: 0.5rem auto;
+}
+
+.project a {
+  color: var(--copper);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.project a:hover {
+  color: var(--sage);
+  border-color: var(--copper);
+}
+
+/* ---------- Footer ---------- */
+footer {
+  background: var(--moss);
+  color: var(--sage);
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  border-top: 1px solid var(--sage);
+}
+
+/* ---------- Fade-in Animation ---------- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 1.2s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  nav a {
+    margin: 0.3rem 0.7rem;
+  }
+
+  .hero {
+    padding: 3rem 1rem;
+  }
+
+  .hero h2 {
+    font-size: 1.5rem;
+  }
+
+  main.content {
+    padding: 1rem;
+  }
+}
