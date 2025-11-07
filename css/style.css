@@ -1,3 +1,71 @@
+/* Dark Botanical Theme — Amarii Productions Inc */
+:root {
+  --black: #0B0C0A;
+  --moss: #1C2A22;
+  --copper: #C47F53;
+  --sage: #4E5B52;
+  --paper: #E9E6E1;
+}
+
+body {
+  background: var(--black);
+  color: var(--paper);
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+header {
+  background: var(--moss);
+  padding: 1rem;
+  text-align: center;
+}
+
+header h1 { font-family: 'Playfair Display', serif; color: var(--copper); }
+
+nav a {
+  color: var(--paper);
+  margin: 0 0.5rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+nav a:hover { color: var(--copper); }
+
+.hero {
+  padding: 5rem 2rem;
+  text-align: center;
+}
+.hero .cta {
+  display: inline-block;
+  background: var(--copper);
+  color: var(--black);
+  padding: 0.75rem 1.5rem;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: background 0.3s ease;
+}
+.hero .cta:hover { background: var(--sage); }
+
+footer {
+  background: var(--moss);
+  color: var(--sage);
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 1.5s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; transform: translateY(0); }
+}
 /* -------------------------
    Project Section Styling
 -------------------------- */
