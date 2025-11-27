@@ -1,19 +1,18 @@
 /* ============================================================
-   Amarii Productions Inc — Dark Botanical v3: Copper Glow Theme
-   Copper → Moss → Black Gradient | Created 2025
-   ============================================================ */
+    Amarii Productions Inc — HIGH-CONTRAST DARK MODE
+    Inspired by Onok Lighting: Black, White, Bold Sans-Serif
+    ============================================================ */
 
-/* ---------- Root Palette ---------- */
+/* ---------- Root Palette (Minimalist) ---------- */
 :root {
-  --black: #0a0a0a;
-  --moss: #1f2b22;
-  --copper: #c47f53;
-  --sage: #5a685e;
-  --paper: #e9e6e1;
-  --accent: #d89d73;
+  --black: #000000;
+  --white: #FFFFFF;
+  --dark-grey: #111111;
+  --light-grey: #AAAAAA;
+  --accent: #d89d73; /* Keeping a subtle accent color if needed, but rarely used */
 }
 
-/* ---------- Global Reset ---------- */
+/* ---------- Global Reset & Typography ---------- */
 * {
   margin: 0;
   padding: 0;
@@ -25,84 +24,119 @@ html {
 }
 
 body {
-  font-family: "Inter", sans-serif;
-  background: linear-gradient(180deg, var(--copper) 0%, var(--moss) 40%, var(--black) 100%);
-  color: var(--paper);
-  line-height: 1.7;
+  /* Core Style: Pure Black Background, White Text */
+  font-family: "Inter", sans-serif; /* Clean Sans-serif */
+  background: var(--black);
+  color: var(--white);
+  line-height: 1.6;
   min-height: 100vh;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
 }
 
-/* ---------- Typography ---------- */
+/* Typography: BOLD and LARGE Sans-serif */
 h1, h2, h3 {
-  font-family: "Playfair Display", serif;
-  color: var(--copper);
-  letter-spacing: 0.5px;
+  font-family: "Inter", sans-serif;
+  color: var(--white);
+  font-weight: 800;
+  letter-spacing: -1px; /* Tighten kerning on large text */
   margin-bottom: 0.5rem;
 }
 
-p, li, a, span {
+h1 { font-size: 5rem; line-height: 0.9; }
+h2 { font-size: 3rem; }
+h3 { font-size: 1.5rem; font-weight: 600; }
+
+p, li, span {
   font-size: 1rem;
-  color: var(--paper);
+  color: var(--light-grey); /* Body text is a subtle light grey */
 }
 
 a {
-  color: var(--copper);
+  color: var(--white);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 a:hover {
-  color: var(--sage);
+  color: var(--light-grey); /* Subtle hover */
 }
 
-/* ---------- Header ---------- */
+/* ---------- Header & Navigation (Minimalist) ---------- */
 header {
-  background: rgba(15, 20, 15, 0.8);
-  backdrop-filter: blur(8px);
-  padding: 1rem;
-  text-align: center;
-  border-bottom: 1px solid rgba(196, 127, 83, 0.2);
-  box-shadow: 0 0 10px rgba(196, 127, 83, 0.3);
+  background: var(--black);
+  padding: 30px 50px; /* Generous padding */
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid var(--dark-grey); /* Subtle separator */
 }
 
-header h1 {
-  color: var(--copper);
-  font-size: 1.6rem;
-  margin-bottom: 0.3rem;
+header .logo {
+  color: var(--white);
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
 }
 
 nav a {
-  color: var(--paper);
-  margin: 0 0.5rem;
-  border-bottom: 1px solid transparent;
-  transition: all 0.3s ease;
+  color: var(--white);
+  margin-left: 40px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  font-weight: 500;
 }
 
 nav a:hover {
-  color: var(--copper);
-  border-color: var(--copper);
+  color: var(--light-grey);
+  border-color: transparent;
 }
 
-/* ---------- Hero Section ---------- */
+/* ---------- Hero Section (Impactful) ---------- */
 .hero {
-  padding: 6rem 2rem;
-  text-align: center;
-  background: radial-gradient(circle at top right, rgba(196,127,83,0.25), transparent 70%);
+  min-height: 85vh;
+  padding: 100px 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 50px;
 }
 
-.hero h2 {
-  font-size: 2.5rem;
-  color: var(--paper);
+.hero .company-title {
+    font-size: 8rem; /* Extremely large branding */
+    font-weight: 900;
+    line-height: 0.9;
 }
 
-.hero p {
-  margin: 1rem auto;
-  max-width: 600px;
-  color: var(--sage);
-  font-size: 1.1rem;
+.hero .tagline {
+    font-size: 1.5rem;
+    margin-top: 10px;
+    color: var(--white);
+}
+
+.hero .main-focus {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-top: 20px;
+    color: var(--white);
+}
+
+.hero .description {
+    max-width: 450px;
+    font-size: 1rem;
+    color: var(--light-grey);
 }
 
 .cta-buttons {
@@ -111,110 +145,167 @@ nav a:hover {
 
 .cta {
   display: inline-block;
-  background: var(--copper);
+  background: var(--white); /* Inverted CTA: White button on black */
   color: var(--black);
   padding: 0.8rem 1.6rem;
   margin: 0 0.5rem;
-  border-radius: 4px;
+  border-radius: 2px; /* Sharp corners */
   text-transform: uppercase;
   font-weight: 600;
   transition: all 0.3s ease;
+  border: 1px solid var(--white);
 }
 
 .cta:hover {
-  background: var(--accent);
-  transform: translateY(-2px);
+  background: var(--black); /* Hover to black/white inverse */
+  color: var(--white);
+  transform: none;
 }
 
-/* ---------- Main Content ---------- */
+/* ---------- Main Content (Clean & Simple) ---------- */
 main.content {
   flex: 1;
-  max-width: 900px;
+  max-width: 1200px; /* Wider content area */
   margin: 3rem auto;
-  padding: 0 1.5rem;
+  padding: 0 50px; /* Match header padding */
 }
 
-/* ---------- Card Style ---------- */
+/* ---------- Card Style (No Glass/Shadows) ---------- */
 .card {
-  background: rgba(20, 25, 20, 0.7);
-  border: 1px solid rgba(196, 127, 83, 0.25);
-  border-radius: 10px;
-  padding: 1.5rem;
-  margin: 1.5rem 0;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: var(--dark-grey); /* Subtle dark grey card background */
+  border: none;
+  border-radius: 0; /* Remove rounded corners */
+  padding: 2.5rem;
+  margin: 2rem 0;
+  box-shadow: none;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 25px rgba(196, 127, 83, 0.4);
+  transform: none; /* Remove vertical lift */
+  background-color: #1a1a1a; /* Slight background change on hover */
+  box-shadow: none;
 }
 
 /* ---------- Projects Section ---------- */
-.project h2 {
-  font-size: 1.4rem;
-  margin-bottom: 0.3rem;
+.project h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+  color: var(--white);
 }
 
 .project p {
-  color: var(--paper);
-  margin-bottom: 0.5rem;
-}
-
-.project a {
-  color: var(--copper);
-  font-weight: 600;
-}
-
-/* ---------- Contribute Section ---------- */
-.contribute {
-  border-top: 1px solid rgba(196, 127, 83, 0.3);
-  margin-top: 3rem;
-  padding-top: 2rem;
-}
-
-.contribute h3 {
-  color: var(--copper);
+  color: var(--light-grey);
   margin-bottom: 1rem;
 }
 
-.contribute .card {
-  text-align: center;
+.project a {
+  color: var(--white);
+  font-weight: 600;
+  border-bottom: 1px solid var(--white);
+}
+.project a:hover {
+    color: var(--light-grey);
+    border-bottom: 1px solid var(--light-grey);
 }
 
-.contribute a {
-  display: inline-block;
-  margin-top: 0.5rem;
-  color: var(--accent);
-  border-bottom: 1px dashed var(--accent);
-  transition: color 0.3s ease;
+/* ---------- Contact Section (Massive Typography) ---------- */
+.contact-section {
+    padding: 100px 50px;
+    min-height: 60vh;
 }
 
-.contribute a:hover {
-  color: var(--paper);
+.contact-section .contact-heading {
+    font-size: 5rem;
+    font-weight: 800;
+    margin-bottom: 50px;
 }
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+}
+
+.contact-details {
+    font-size: 0.9rem;
+    color: var(--light-grey);
+}
+
+.contact-details p {
+    margin-bottom: 1.5em;
+    color: var(--light-grey);
+}
+
+.social-links a {
+    color: var(--light-grey);
+    margin-right: 20px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.contact-main {
+    text-align: right;
+}
+
+.contact-main .phone-number {
+    font-size: 4rem; /* Massive phone number */
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 5px;
+    color: var(--white);
+}
+
+.contact-main .location-name {
+    font-size: 7rem; /* Extremely large location name */
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -3px;
+    margin-top: 0;
+    color: var(--white);
+}
+
 
 /* ---------- Footer ---------- */
 footer {
   text-align: center;
-  padding: 1.2rem;
+  padding: 1.5rem;
   font-size: 0.9rem;
-  color: var(--sage);
-  border-top: 1px solid rgba(196,127,83,0.25);
-  background: rgba(15, 20, 15, 0.8);
+  color: var(--light-grey);
+  border-top: 1px solid var(--dark-grey);
+  background: var(--black);
 }
 
 /* ---------- Responsive ---------- */
-@media (max-width: 768px) {
-  .hero h2 {
-    font-size: 1.8rem;
+@media (max-width: 992px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 80px 30px;
   }
-  .hero p {
-    font-size: 1rem;
+  .hero .company-title {
+    font-size: 6rem;
   }
-  .cta {
-    margin: 0.4rem 0;
-    display: block;
+  .contact-section {
+    padding: 80px 30px;
+  }
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+  .contact-main {
+    text-align: left;
+    margin-top: 30px;
+  }
+  .contact-main .phone-number {
+      font-size: 3rem;
+  }
+  .contact-main .location-name {
+      font-size: 4.5rem;
+  }
+  nav ul {
+      display: none; /* Collapse menu for mobile */
+  }
+  header {
+      padding: 20px 30px;
   }
 }
