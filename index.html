@@ -1,114 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amprodinc | Media, Publishing, & Creative Systems</title>
-    <link rel="stylesheet" href="style.css" /> 
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        /* Add necessary CSS for fade-in class defined in the JS/previous context */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amarii Productions Inc</title>
+  <link rel="stylesheet" href="css/style.css?v=3" />
 </head>
 <body>
+  <header>
+    <h1>Amarii Productions Inc</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="mission-vision.html">Mission</a>
+      <a href="projects.html">Projects</a>
+      <a href="partnerships.html">Partnerships</a>
+      <a href="financial.html">Financial</a>
+      <a href="support.html">Support</a>
+      <a href="shop.html">Shop</a>
+    </nav>
+  </header>
 
-    <header>
-        <div class="logo">Amarii Productions Inc</div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="mission-vision.html">Mission</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="partnerships.html">Partnerships</a></li>
-                <li><a href="financial.html">Financial</a></li>
-                <li><a href="support.html">Support</a></li>
-                <li><a href="shop.html">Shop</a></li>
-            </ul>
-        </nav>
-    </header>
+  <section class="hero fade-in">
+    <h2>Media, Publishing, & Creative Systems</h2>
+    <p>Driving visibility and innovation through broadcast, books, and digital storytelling — powered by data, design, and culture.</p>
+    <div class="cta-buttons">
+      <a href="projects.html" class="cta">Our Projects</a>
+      <a href="partnerships.html" class="cta">Collaborate</a>
+    </div>
+  </section>
 
-    <section class="hero fade-in" id="home">
-        <div class="content-left">
-            <h1 class="company-title">Amprodinc</h1>
-            <p class="tagline">Media, Publishing, & Creative Systems</p>
-            <div class="cta-buttons">
-                <a href="projects.html" class="cta">Our Projects</a>
-            </div>
-        </div>
-        <div class="content-right">
-            <h2 class="main-focus">Digital Storytelling</h2>
-            <p class="description">
-                Driving visibility and innovation through broadcast, books, and digital systems—powered by strategic data, cutting-edge design, and cultural insight.
-            </p>
-             <div class="cta-buttons">
-                 <a href="partnerships.html" class="cta" style="background:none; color:white;">Collaborate →</a>
-            </div>
-        </div>
-    </section>
-
-    <main class="content">
-        </main>
-
-    <section class="contact-section fade-in" id="contact">
-        <h2 class="contact-heading">Contacts</h2>
-        <div class="contact-grid">
-            <div class="contact-details">
-                <p>info@amprodinc.site</p>
-                <p>123 Global Media Lane, <br>New York, NY 10001</p>
-                <div class="social-links">
-                    <a href="#">LinkedIn</a> | <a href="#">GitHub</a> | <a href="#">Contact Page</a>
-                </div>
-            </div>
-            <div class="contact-main">
-                <p class="phone-number">Let's Connect</p>
-                <p class="location-name">New York</p>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        © 2025 Amarii Productions Inc. All Rights Reserved.
-    </footer>
-
-    <script>
-        // Simple scroll animation trigger
-        document.addEventListener("DOMContentLoaded", () => {
-            const fadeElems = document.querySelectorAll('.fade-in');
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    // Only add the visible class if the element is intersecting (scrolled into view)
-                    if (entry.isIntersecting) entry.target.classList.add('visible');
-                });
-            }, { threshold: 0.2 });
-
-            fadeElems.forEach(el => observer.observe(el));
-        });
-        
-        // Custom script to adjust header behavior if needed, but keeping it simple for now
-        
-        // Helper function for navigation to match the new style 
-        const navLinks = document.querySelector('nav ul');
-        const headerH1 = document.querySelector('header h1');
-        
-        // Restructure the H1 content to be inside a .logo div for correct styling
-        if (headerH1) {
-            const logoDiv = document.createElement('div');
-            logoDiv.classList.add('logo');
-            logoDiv.textContent = headerH1.textContent;
-            headerH1.replaceWith(logoDiv);
-        }
-
-    </script>
+  <footer>
+    © 2025 Amarii Productions Inc. All Rights Reserved.
+  </footer>
 </body>
 </html>
