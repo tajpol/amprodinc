@@ -1,41 +1,43 @@
 ```css
 /* ============================================================
    AMARII PRODUCTIONS INC.
-   Editorial / Experience Design Direction
-   Inspired by contemporary design consultancies
+   SITE-WIDE VISUAL SYSTEM
+   Editorial / Contemporary Creative Studio
    ============================================================ */
 
 
 /* ============================================================
-   01 — VARIABLES
+   01. VARIABLES
    ============================================================ */
 
 :root {
-  --bg: #e8e6df;
-  --bg-dark: #161616;
-  --text: #111111;
-  --muted: #686863;
-  --line: rgba(17, 17, 17, 0.22);
-  --white: #f5f4ef;
+  --bg: #e9e7e0;
+  --bg-alt: #dedcd5;
+  --ink: #111111;
+  --muted: #666660;
+  --line: rgba(17, 17, 17, 0.20);
 
-  --pad: clamp(24px, 4vw, 64px);
-  --max-width: 1600px;
+  --page-padding: clamp(22px, 4vw, 64px);
+  --content-width: 1500px;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 
 /* ============================================================
-   02 — RESET
+   02. RESET
    ============================================================ */
 
-*,
-*::before,
-*::after {
+* {
   box-sizing: border-box;
 }
 
 html {
   margin: 0;
   padding: 0;
+
+  background: var(--bg);
+
   scroll-behavior: smooth;
 }
 
@@ -46,7 +48,7 @@ body {
   min-height: 100vh;
 
   background: var(--bg);
-  color: var(--text);
+  color: var(--ink);
 
   font-family:
     Arial,
@@ -54,33 +56,41 @@ body {
     sans-serif;
 
   font-size: 16px;
-  line-height: 1.4;
+  line-height: 1.5;
 
   overflow-x: hidden;
+
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--ink);
+  text-decoration: none;
 }
 
 img {
   max-width: 100%;
-  display: block;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
 }
 
 
 /* ============================================================
-   03 — TYPOGRAPHY
+   03. TYPOGRAPHY
    ============================================================ */
 
 h1,
 h2,
-h3 {
-  margin: 0;
-  padding: 0;
+h3,
+h4,
+p {
+  margin-top: 0;
+}
 
-  color: var(--text);
+h1,
+h2,
+h3,
+h4 {
+  color: var(--ink);
 
   font-family:
     Arial,
@@ -90,185 +100,274 @@ h3 {
   font-weight: 400;
 }
 
-p {
-  margin: 0;
+strong {
+  color: var(--ink);
+  font-weight: 600;
 }
 
 
 /* ============================================================
-   04 — HEADER
+   04. HEADER
    ============================================================ */
+
+/*
+   Handles BOTH types of headers currently used by the site:
+
+   Full:
+   <header>
+     <h1>...</h1>
+     <nav>...</nav>
+   </header>
+
+   Simple:
+   <header>
+     <a href="index.html">← Home</a>
+   </header>
+*/
 
 header {
   width: 100%;
-  min-height: 90px;
+
+  min-height: 88px;
 
   padding:
-    24px
-    var(--pad);
-
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: start;
-
-  gap: 40px;
+    25px
+    var(--page-padding);
 
   border-bottom: 1px solid var(--line);
 
   background: var(--bg);
 
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 30px;
+
   position: relative;
-  z-index: 20;
+  z-index: 10;
 }
 
 
-/* Company name */
+/* Site / page heading in full header */
 
 header h1 {
-  max-width: 280px;
+  margin: 0;
 
-  font-size: clamp(18px, 1.4vw, 23px);
+  font-size:
+    clamp(18px, 1.5vw, 24px);
+
   line-height: 1;
 
   font-weight: 600;
+
   letter-spacing: -0.045em;
 }
 
 
-/* Navigation */
+/* Simple "← Home" header */
 
-nav {
-  display: flex;
+header > a {
+  display: inline-flex;
   align-items: center;
-  gap: clamp(20px, 2.8vw, 48px);
-}
 
-nav a {
-  display: block;
+  min-height: 36px;
 
-  padding-bottom: 4px;
+  padding-bottom: 5px;
 
-  color: var(--text);
+  border-bottom: 1px solid var(--ink);
 
   font-size: 11px;
-  line-height: 1;
 
   font-weight: 600;
-  letter-spacing: 0.04em;
+
+  letter-spacing: 0.05em;
 
   text-transform: uppercase;
 
-  border-bottom: 1px solid transparent;
-
   transition:
     opacity 180ms ease,
-    border-color 180ms ease;
+    transform 180ms ease;
 }
 
-nav a:hover {
-  opacity: 0.5;
-  border-bottom-color: var(--text);
+header > a:hover {
+  opacity: 0.45;
+  transform: translateX(4px);
 }
 
 
 /* ============================================================
-   05 — HERO
+   05. NAVIGATION
+   ============================================================ */
+
+nav {
+  display: flex;
+  align-items: center;
+
+  gap:
+    clamp(18px, 2.7vw, 44px);
+}
+
+nav a {
+  position: relative;
+
+  display: inline-block;
+
+  padding-bottom: 5px;
+
+  color: var(--ink);
+
+  font-size: 10px;
+
+  line-height: 1;
+
+  font-weight: 600;
+
+  letter-spacing: 0.055em;
+
+  text-transform: uppercase;
+
+  transition: opacity 180ms ease;
+}
+
+nav a::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 1px;
+
+  background: var(--ink);
+
+  transform: scaleX(0);
+
+  transform-origin: right;
+
+  transition:
+    transform 220ms var(--ease);
+}
+
+nav a:hover,
+nav a.active {
+  opacity: 0.55;
+}
+
+nav a:hover::after,
+nav a.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+
+/* ============================================================
+   06. HOME — HERO
    ============================================================ */
 
 .hero {
   width: 100%;
-  max-width: var(--max-width);
+  max-width: var(--content-width);
 
-  min-height: calc(100vh - 90px);
+  min-height:
+    calc(100vh - 88px);
 
   margin: 0 auto;
 
   padding:
-    clamp(70px, 10vh, 140px)
-    var(--pad)
-    48px;
+    clamp(75px, 10vh, 145px)
+    var(--page-padding)
+    42px;
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 
   position: relative;
 }
 
 
-/* Small editorial index */
+/*
+   Small design-studio style index mark.
+*/
 
 .hero::before {
-  content: "— 01";
+  content: "01";
 
   position: absolute;
 
-  top: clamp(70px, 10vh, 140px);
-  right: var(--pad);
+  top:
+    clamp(75px, 10vh, 145px);
+
+  right: var(--page-padding);
 
   color: var(--muted);
 
-  font-size: 11px;
+  font-size: 10px;
+
   line-height: 1;
 
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
 }
 
 
-/* Main headline */
+/* Main homepage headline */
 
 .hero h2 {
-  width: min(100%, 1250px);
+  max-width: 1250px;
 
   margin: 0;
+
+  color: var(--ink);
 
   font-size:
     clamp(
       64px,
-      11.5vw,
-      190px
+      11.2vw,
+      180px
     );
 
-  line-height: 0.82;
+  line-height: 0.83;
 
   font-weight: 400;
 
   letter-spacing: -0.085em;
-
-  text-wrap: balance;
 }
 
 
-/* Description */
+/* Homepage description */
 
-.hero p {
-  width: min(100%, 580px);
+.hero > p {
+  width: min(100%, 570px);
 
   margin-top: auto;
-  margin-bottom: 36px;
+  margin-bottom: 34px;
 
-  font-size: clamp(17px, 1.45vw, 23px);
+  color: var(--ink);
 
-  line-height: 1.3;
+  font-size:
+    clamp(17px, 1.45vw, 23px);
+
+  line-height: 1.32;
 
   letter-spacing: -0.025em;
-
-  color: var(--text);
 }
 
 
 /* ============================================================
-   06 — CTA
+   07. HOME — BUTTONS / LINKS
    ============================================================ */
 
 .cta-buttons {
   width: 100%;
 
-  padding-top: 20px;
+  padding-top: 18px;
 
   display: flex;
-  align-items: center;
-  gap: 12px 40px;
+  flex-wrap: wrap;
+
+  gap: 10px 38px;
 
   border-top: 1px solid var(--line);
 }
@@ -276,16 +375,27 @@ nav a:hover {
 .cta {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+
+  gap: 11px;
 
   min-height: 40px;
 
-  color: var(--text);
+  padding: 0;
 
-  font-size: 11px;
+  border: 0;
+  border-bottom: 1px solid var(--ink);
+  border-radius: 0;
+
+  background: transparent;
+
+  color: var(--ink);
+
+  font-size: 10px;
+
   font-weight: 600;
 
-  letter-spacing: 0.05em;
+  letter-spacing: 0.055em;
+
   text-transform: uppercase;
 
   transition:
@@ -296,14 +406,21 @@ nav a:hover {
 .cta::after {
   content: "↗";
 
-  font-size: 15px;
+  font-size: 14px;
+
   line-height: 1;
 
-  transition: transform 180ms ease;
+  transition:
+    transform 180ms ease;
 }
 
 .cta:hover {
+  color: var(--ink);
+
+  background: transparent;
+
   opacity: 0.45;
+
   transform: translateX(3px);
 }
 
@@ -313,302 +430,389 @@ nav a:hover {
 
 
 /* ============================================================
-   07 — MAIN CONTENT
+   08. SECONDARY PAGES
+   Mission / Financial / Support
    ============================================================ */
 
 main.content {
   width: 100%;
-  max-width: var(--max-width);
+
+  max-width: var(--content-width);
+
+  min-height:
+    calc(100vh - 170px);
 
   margin: 0 auto;
 
   padding:
-    100px
-    var(--pad);
+    clamp(80px, 11vh, 150px)
+    var(--page-padding)
+    100px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* Page title */
+
+main.content > h1 {
+  width: min(100%, 1100px);
+
+  margin: 0 0 clamp(60px, 9vw, 130px);
+
+  color: var(--ink);
+
+  font-size:
+    clamp(
+      58px,
+      10vw,
+      155px
+    );
+
+  line-height: 0.82;
+
+  font-weight: 400;
+
+  letter-spacing: -0.085em;
+}
+
+
+/*
+   Body copy is intentionally NOT forced into a
+   centered box or a grid.
+
+   This preserves the natural vertical structure
+   of your existing pages.
+*/
+
+main.content > p {
+  width: min(100%, 760px);
+
+  margin: 0 0 28px;
+
+  padding-top: 22px;
+
+  border-top: 1px solid var(--line);
+
+  color: var(--ink);
+
+  font-size:
+    clamp(18px, 1.6vw, 25px);
+
+  line-height: 1.38;
+
+  letter-spacing: -0.025em;
+}
+
+main.content > p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* Links within content */
+
+main.content a {
+  color: var(--ink);
+
+  border-bottom: 1px solid var(--ink);
+
+  transition:
+    opacity 180ms ease;
+}
+
+main.content a:hover {
+  opacity: 0.45;
 }
 
 
 /* ============================================================
-   08 — CARDS
+   09. PROJECTS PAGE
    ============================================================ */
 
+/*
+   Projects currently use:
+
+   <div class="card project fade-in">
+
+   directly inside the body.
+
+   Therefore we style .card globally rather than
+   assuming they live inside main.content.
+*/
+
 .card {
+  width: 100%;
+
   margin: 0;
 
   padding:
-    28px
-    0;
+    clamp(30px, 4vw, 55px)
+    var(--page-padding);
 
   background: transparent;
 
   border: 0;
-  border-top: 1px solid var(--line);
+
+  border-bottom: 1px solid var(--line);
 
   border-radius: 0;
 
   box-shadow: none;
 
   transition:
-    padding-left 250ms ease,
-    background 250ms ease;
-}
-
-.card:last-child {
-  border-bottom: 1px solid var(--line);
-}
-
-.card:hover {
-  padding-left: 20px;
-
-  background: transparent;
-
-  transform: none;
-  box-shadow: none;
+    background-color 250ms ease,
+    padding-left 300ms var(--ease);
 }
 
 
-/* ============================================================
-   09 — PROJECTS
-   ============================================================ */
+/* First project */
 
-.project h3 {
-  margin-bottom: 12px;
-
-  font-size:
-    clamp(30px, 4vw, 62px);
-
-  line-height: 0.95;
-
-  font-weight: 400;
-
-  letter-spacing: -0.06em;
-}
-
-.project p {
-  max-width: 600px;
-
-  margin-bottom: 20px;
-
-  color: var(--muted);
-
-  font-size: 15px;
-  line-height: 1.45;
-}
-
-.project a {
-  display: inline-block;
-
-  padding-bottom: 3px;
-
-  border-bottom: 1px solid var(--text);
-
-  color: var(--text);
-
-  font-size: 11px;
-  font-weight: 600;
-
-  letter-spacing: 0.04em;
-
-  text-transform: uppercase;
-
-  transition:
-    opacity 180ms ease;
-}
-
-.project a:hover {
-  color: var(--text);
-  border-color: var(--text);
-  opacity: 0.45;
-}
-
-
-/* ============================================================
-   10 — CONTACT
-   ============================================================ */
-
-.contact-section {
-  width: 100%;
-
-  padding:
-    clamp(100px, 15vw, 240px)
-    var(--pad)
-    100px;
-
+.card.project:first-of-type {
   border-top: 1px solid var(--line);
 }
 
 
-/* Heading */
+/* Project title */
 
-.contact-section .contact-heading {
-  margin: 0 0 80px;
+.project h2 {
+  max-width: 1100px;
 
-  font-size:
-    clamp(
-      70px,
-      13vw,
-      210px
-    );
+  margin: 0 0 18px;
 
-  line-height: 0.78;
-
-  font-weight: 400;
-
-  letter-spacing: -0.09em;
-}
-
-
-/* Grid */
-
-.contact-grid {
-  width: 100%;
-
-  display: grid;
-
-  grid-template-columns:
-    minmax(180px, 0.65fr)
-    minmax(300px, 1.35fr);
-
-  gap: 60px;
-
-  padding-top: 24px;
-
-  border-top: 1px solid var(--line);
-}
-
-
-/* Details */
-
-.contact-details {
-  color: var(--muted);
-
-  font-size: 13px;
-}
-
-.contact-details p {
-  max-width: 300px;
-
-  margin-bottom: 24px;
-
-  color: var(--muted);
-
-  font-size: 13px;
-  line-height: 1.45;
-}
-
-
-/* Social links */
-
-.social-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px 24px;
-}
-
-.social-links a {
-  color: var(--text);
-
-  font-size: 10px;
-  font-weight: 600;
-
-  letter-spacing: 0.05em;
-
-  text-transform: uppercase;
-
-  border-bottom: 1px solid var(--text);
-
-  padding-bottom: 3px;
-
-  transition:
-    opacity 180ms ease;
-}
-
-.social-links a:hover {
-  opacity: 0.45;
-}
-
-
-/* Contact main */
-
-.contact-main {
-  text-align: right;
-}
-
-.contact-main .phone-number {
-  margin: 0 0 24px;
-
-  color: var(--text);
+  color: var(--ink);
 
   font-size:
     clamp(
-      32px,
-      5.5vw,
-      88px
+      38px,
+      6vw,
+      90px
     );
 
   line-height: 0.9;
 
   font-weight: 400;
 
-  letter-spacing: -0.07em;
+  letter-spacing: -0.065em;
 }
 
-.contact-main .location-name {
-  margin: 0;
 
-  color: var(--text);
+/* Project description */
+
+.project p {
+  max-width: 650px;
+
+  margin: 0 0 25px;
+
+  color: var(--muted);
 
   font-size:
-    clamp(
-      64px,
-      13vw,
-      210px
-    );
+    clamp(15px, 1.1vw, 18px);
 
-  line-height: 0.78;
+  line-height: 1.45;
+}
 
-  font-weight: 400;
 
-  letter-spacing: -0.095em;
+/* Project link */
+
+.project > a {
+  display: inline-block;
+
+  padding-bottom: 4px;
+
+  color: var(--ink);
+
+  border-bottom: 1px solid var(--ink);
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.05em;
+
+  text-transform: uppercase;
+
+  transition: opacity 180ms ease;
+}
+
+.project > a:hover {
+  color: var(--ink);
+
+  border-color: var(--ink);
+
+  opacity: 0.45;
+}
+
+
+/* Subtle project hover */
+
+.card.project:hover {
+  background: var(--bg-alt);
+
+  padding-left:
+    calc(var(--page-padding) + 15px);
 }
 
 
 /* ============================================================
-   11 — FOOTER
+   10. CONTRIBUTE SECTION
+   ============================================================ */
+
+.contribute {
+  width: 100%;
+
+  padding:
+    clamp(90px, 13vw, 180px)
+    var(--page-padding)
+    80px;
+
+  border-top: 1px solid var(--line);
+}
+
+
+/* Contribute heading */
+
+.contribute h3 {
+  margin: 0 0 60px;
+
+  font-size:
+    clamp(
+      55px,
+      9vw,
+      130px
+    );
+
+  line-height: 0.82;
+
+  font-weight: 400;
+
+  letter-spacing: -0.08em;
+}
+
+
+/*
+   Donation cards inside contribute.
+*/
+
+.contribute .card {
+  padding-left: 0;
+  padding-right: 0;
+
+  border-top: 1px solid var(--line);
+  border-bottom: 0;
+
+  background: transparent;
+}
+
+.contribute .card:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.contribute .card:hover {
+  padding-left: 0;
+
+  background: transparent;
+}
+
+
+/* Donation title */
+
+.contribute h4 {
+  margin: 0 0 12px;
+
+  font-size:
+    clamp(25px, 3vw, 45px);
+
+  line-height: 1;
+
+  font-weight: 400;
+
+  letter-spacing: -0.05em;
+}
+
+
+/* Donation description */
+
+.contribute .card p {
+  margin-bottom: 18px;
+
+  color: var(--muted);
+
+  font-size: 15px;
+}
+
+
+/* Donation link */
+
+.contribute .card a {
+  display: inline-block;
+
+  padding-bottom: 3px;
+
+  border-bottom: 1px solid var(--ink);
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.04em;
+
+  text-transform: uppercase;
+}
+
+
+/* ============================================================
+   11. DONATION IMAGE
+   ============================================================ */
+
+.contribute img {
+  width: auto;
+  max-width: 220px;
+
+  margin-top: 10px;
+}
+
+
+/* ============================================================
+   12. FOOTER
    ============================================================ */
 
 footer {
   width: 100%;
 
+  margin-top: auto;
+
   padding:
     22px
-    var(--pad);
+    var(--page-padding);
 
   border-top: 1px solid var(--line);
 
-  color: var(--muted);
-
   background: var(--bg);
+
+  color: var(--muted);
 
   font-size: 10px;
 
-  letter-spacing: 0.02em;
+  line-height: 1.3;
+
+  letter-spacing: 0.025em;
 }
 
 
 /* ============================================================
-   12 — ANIMATION
+   13. FADE-IN ANIMATION
    ============================================================ */
 
 .fade-in {
   opacity: 0;
 
   transform:
-    translateY(35px);
+    translateY(28px);
 
   transition:
-    opacity 900ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 800ms var(--ease),
+    transform 800ms var(--ease);
 }
 
 .fade-in.visible {
@@ -620,85 +824,90 @@ footer {
 
 
 /* ============================================================
-   13 — RESPONSIVE
+   14. MOBILE / TABLET
    ============================================================ */
 
 @media (max-width: 900px) {
 
   header {
-    grid-template-columns: 1fr;
+    min-height: auto;
+
+    flex-direction: column;
+
     gap: 24px;
   }
 
   nav {
+    width: 100%;
+
     flex-wrap: wrap;
-    gap: 15px 24px;
+
+    gap: 14px 22px;
   }
 
   .hero {
-    min-height: 780px;
+    min-height: 760px;
   }
 
   .hero::before {
     position: static;
 
-    margin-bottom: 30px;
-
-    order: -1;
+    margin-bottom: 35px;
   }
 
-  .hero h2 {
+  main.content {
+    min-height: calc(100vh - 140px);
+  }
+
+  .project h2 {
     font-size:
       clamp(
-        58px,
-        12vw,
-        110px
+        38px,
+        8vw,
+        70px
       );
-  }
-
-  .contact-grid {
-    grid-template-columns: 1fr;
-    gap: 80px;
-  }
-
-  .contact-main {
-    text-align: left;
   }
 }
 
 
+/* ============================================================
+   15. MOBILE
+   ============================================================ */
+
 @media (max-width: 600px) {
 
   :root {
-    --pad: 20px;
+    --page-padding: 20px;
   }
 
-  header {
-    min-height: auto;
 
+  /* Header */
+
+  header {
     padding-top: 20px;
     padding-bottom: 20px;
   }
 
   header h1 {
-    max-width: 220px;
-
     font-size: 18px;
   }
 
   nav {
-    gap: 13px 18px;
+    gap: 12px 18px;
   }
 
   nav a {
     font-size: 9px;
   }
 
+
+  /* Home */
+
   .hero {
     min-height: 720px;
 
-    padding-top: 60px;
-    padding-bottom: 30px;
+    padding-top: 55px;
+    padding-bottom: 25px;
   }
 
   .hero h2 {
@@ -706,54 +915,94 @@ footer {
       clamp(
         52px,
         16vw,
-        90px
+        88px
       );
 
     line-height: 0.84;
   }
 
-  .hero p {
-    margin-bottom: 30px;
-
+  .hero > p {
     font-size: 17px;
+
+    margin-bottom: 28px;
   }
 
   .cta-buttons {
     flex-direction: column;
+
     align-items: flex-start;
 
-    gap: 4px;
+    gap: 5px;
   }
+
+
+  /* Secondary pages */
 
   main.content {
-    padding-top: 70px;
+    padding-top: 65px;
     padding-bottom: 70px;
   }
 
-  .contact-section {
-    padding-top: 100px;
-    padding-bottom: 70px;
-  }
+  main.content > h1 {
+    margin-bottom: 65px;
 
-  .contact-section .contact-heading {
-    margin-bottom: 60px;
-
-    font-size:
-      clamp(
-        58px,
-        17vw,
-        95px
-      );
-  }
-
-  .contact-main .location-name {
     font-size:
       clamp(
         55px,
-        18vw,
-        100px
+        17vw,
+        90px
       );
   }
+
+  main.content > p {
+    font-size: 18px;
+  }
+
+
+  /* Projects */
+
+  .card {
+    padding-top: 30px;
+    padding-bottom: 35px;
+  }
+
+  .project h2 {
+    font-size:
+      clamp(
+        36px,
+        11vw,
+        65px
+      );
+  }
+
+  .project p {
+    font-size: 15px;
+  }
+
+  .card.project:hover {
+    padding-left: var(--page-padding);
+  }
+
+
+  /* Contribute */
+
+  .contribute {
+    padding-top: 90px;
+  }
+
+  .contribute h3 {
+    margin-bottom: 50px;
+
+    font-size:
+      clamp(
+        55px,
+        17vw,
+        90px
+      );
+  }
+
+
+  /* Footer */
 
   footer {
     font-size: 9px;
@@ -762,8 +1011,13 @@ footer {
 
 
 /* ============================================================
-   14 — ACCESSIBILITY
+   16. ACCESSIBILITY
    ============================================================ */
+
+::selection {
+  background: var(--ink);
+  color: var(--bg);
+}
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -771,27 +1025,16 @@ footer {
     scroll-behavior: auto;
   }
 
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-
   .fade-in {
     opacity: 1;
     transform: none;
+    transition: none;
   }
-}
 
-
-/* ============================================================
-   15 — TEXT SELECTION
-   ============================================================ */
-
-::selection {
-  background: var(--text);
-  color: var(--bg);
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
 }
 ```
