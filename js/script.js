@@ -1,28 +1,28 @@
-```javascript
 /* ============================================================
    AMARII PRODUCTIONS INC
-   Global JavaScript
+   GLOBAL JAVASCRIPT
    ============================================================ */
 
 
 /*
-   Wait until the document has completely loaded.
+   This script ONLY enhances the page with animations.
+
+   IMPORTANT:
+   The CSS keeps all content visible by default.
+
+   Therefore, if JavaScript fails to load, the website
+   and all of its content will still be visible.
 */
 
-document.addEventListener("DOMContentLoaded", () => {
 
-
-  /* ==========================================================
-     FADE-IN ANIMATION
-     ========================================================== */
+document.addEventListener("DOMContentLoaded", function () {
 
   const fadeElements =
     document.querySelectorAll(".fade-in");
 
 
   /*
-     If there are no fade-in elements on the page,
-     there is nothing else to do.
+     Nothing to animate.
   */
 
   if (!fadeElements.length) {
@@ -31,8 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /*
-     Make sure users who have requested reduced motion
-     still see all content immediately.
+     Respect the user's reduced-motion preference.
   */
 
   const reducedMotion =
@@ -42,74 +41,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   if (reducedMotion) {
-
-    fadeElements.forEach((element) => {
-
-      element.classList.add("visible");
-
-    });
-
     return;
   }
 
 
-  /* ==========================================================
-     INTERSECTION OBSERVER
-     ========================================================== */
-
   /*
-     Older browsers may not support IntersectionObserver.
-
-     In that situation we deliberately make everything
-     visible rather than allowing content to disappear.
+     If IntersectionObserver isn't supported,
+     leave the content completely normal.
   */
 
   if (!("IntersectionObserver" in window)) {
-
-    fadeElements.forEach((element) => {
-
-      element.classList.add("visible");
-
-    });
-
     return;
   }
 
 
-  /*
-     Create the observer.
-
-     rootMargin causes the animation to begin slightly
-     before the element reaches the exact center of the
-     viewport.
-  */
-
   const observer =
     new IntersectionObserver(
-      (entries, observerInstance) => {
+      function (entries, observer) {
 
-        entries.forEach((entry) => {
+        entries.forEach(function (entry) {
 
           if (entry.isIntersecting) {
 
-            /*
-               Reveal the element.
-            */
+            entry.target.classList.add("animate");
 
-            entry.target.classList.add("visible");
-
-
-            /*
-               Once revealed, stop observing it.
-
-               This prevents the animation from repeatedly
-               firing when the user scrolls up and down.
-            */
-
-            observerInstance.unobserve(
-              entry.target
-            );
-
+            observer.unobserve(entry.target);
           }
 
         });
@@ -119,20 +75,19 @@ document.addEventListener("DOMContentLoaded", () => {
         threshold: 0.08,
 
         rootMargin:
-          "0px 0px -40px 0px"
+          "0px 0px -30px 0px"
       }
     );
 
 
-  /* ==========================================================
-     START OBSERVING
-     ========================================================== */
+  /*
+     Watch each fade-in element.
+  */
 
-  fadeElements.forEach((element) => {
+  fadeElements.forEach(function (element) {
 
     observer.observe(element);
 
   });
 
 });
-```
