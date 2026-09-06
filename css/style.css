@@ -1,13 +1,7 @@
 ```css
 /* ============================================================
    AMARII PRODUCTIONS INC.
-   SITE-WIDE CSS
-   Editorial / Creative Studio Visual Direction
-
-   IMPORTANT:
-   - Does NOT require JavaScript to display content.
-   - Does NOT alter HTML content.
-   - Designed around the existing HTML structures.
+   REFINED SITE-WIDE CSS
    ============================================================ */
 
 
@@ -17,22 +11,27 @@
 
 :root {
   --background: #e8e6df;
-  --background-hover: #dfddd5;
+  --background-hover: #dedcd4;
 
   --black: #111111;
   --grey: #686863;
-  --light-grey: #a5a39c;
 
-  --line: rgba(17, 17, 17, 0.20);
+  /* Standard site margin */
+  --site-margin: clamp(24px, 5vw, 72px);
 
-  --page-padding: clamp(20px, 4vw, 64px);
+  /* Consistent content width */
+  --content-width: 1500px;
 
-  --transition: 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  /* Project button stroke */
+  --project-stroke: 2px;
+
+  --transition:
+    220ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 
 /* ============================================================
-   02 — UNIVERSAL RESET
+   02 — RESET
    ============================================================ */
 
 *,
@@ -80,16 +79,9 @@ a {
   text-decoration: none;
 }
 
-button,
-input,
-textarea,
-select {
-  font: inherit;
-}
-
 
 /* ============================================================
-   03 — BASIC TYPOGRAPHY
+   03 — TYPOGRAPHY
    ============================================================ */
 
 h1,
@@ -97,6 +89,7 @@ h2,
 h3,
 h4 {
   margin-top: 0;
+
   color: var(--black);
 
   font-family:
@@ -118,38 +111,41 @@ strong {
 
 
 /* ============================================================
-   04 — HEADER
+   04 — GLOBAL PAGE MARGIN
    ============================================================ */
 
 /*
-   Supports both existing header structures.
+   This creates the standard horizontal breathing room
+   throughout the entire website.
 
-   HOME / PROJECTS:
-
-   <header>
-     <h1>...</h1>
-     <nav>...</nav>
-   </header>
-
-   OTHER PAGES:
-
-   <header>
-     <a href="index.html">← Home</a>
-   </header>
+   Header, homepage, content pages and projects all use
+   the same margin system.
 */
+
+header,
+main.content,
+.hero,
+.contribute {
+  padding-left: var(--site-margin);
+  padding-right: var(--site-margin);
+}
+
+
+/* ============================================================
+   05 — HEADER
+   ============================================================ */
 
 header {
   width: 100%;
 
   min-height: 88px;
 
-  padding:
-    25px
-    var(--page-padding);
+  padding-top: 25px;
+  padding-bottom: 25px;
 
   background: var(--background);
 
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid rgba(17, 17, 17, 0.20);
 
   display: flex;
   align-items: flex-start;
@@ -162,7 +158,7 @@ header {
 }
 
 
-/* Company / page heading */
+/* Header company name */
 
 header h1 {
   margin: 0;
@@ -180,8 +176,7 @@ header h1 {
 }
 
 
-/* Simple Home link used by Mission,
-   Financial and Support */
+/* Secondary-page Home link */
 
 header > a {
   display: inline-block;
@@ -215,7 +210,7 @@ header > a:hover {
 
 
 /* ============================================================
-   05 — NAVIGATION
+   06 — NAVIGATION
    ============================================================ */
 
 nav {
@@ -288,7 +283,7 @@ nav a.active {
 
 
 /* ============================================================
-   06 — HOME PAGE
+   07 — HOMEPAGE HERO
    ============================================================ */
 
 .hero {
@@ -297,10 +292,10 @@ nav a.active {
   min-height:
     calc(100vh - 88px);
 
-  padding:
-    clamp(75px, 10vh, 140px)
-    var(--page-padding)
-    42px;
+  padding-top:
+    clamp(75px, 10vh, 140px);
+
+  padding-bottom: 42px;
 
   background: var(--background);
 
@@ -311,10 +306,7 @@ nav a.active {
 }
 
 
-/*
-   Small editorial marker.
-   This is a visual CSS element only.
-*/
+/* Small editorial marker */
 
 .hero::before {
   content: "01";
@@ -324,7 +316,7 @@ nav a.active {
   top:
     clamp(75px, 10vh, 140px);
 
-  right: var(--page-padding);
+  right: var(--site-margin);
 
   color: var(--grey);
 
@@ -336,7 +328,7 @@ nav a.active {
 }
 
 
-/* Homepage title */
+/* Homepage headline */
 
 .hero h2 {
   width: min(100%, 1250px);
@@ -380,7 +372,7 @@ nav a.active {
 
 
 /* ============================================================
-   07 — HOME CTA LINKS
+   08 — HOMEPAGE CTA
    ============================================================ */
 
 .cta-buttons {
@@ -395,7 +387,7 @@ nav a.active {
 
   gap: 10px 40px;
 
-  border-top: 1px solid var(--line);
+  border-top: 1px solid rgba(17, 17, 17, 0.20);
 }
 
 .cta {
@@ -415,8 +407,6 @@ nav a.active {
 
   border: 0;
   border-bottom: 1px solid var(--black);
-
-  border-radius: 0;
 
   font-size: 10px;
 
@@ -445,10 +435,6 @@ nav a.active {
 }
 
 .cta:hover {
-  background: transparent;
-
-  color: var(--black);
-
   opacity: 0.45;
 
   transform: translateX(3px);
@@ -460,28 +446,29 @@ nav a.active {
 
 
 /* ============================================================
-   08 — SECONDARY PAGES
-   Mission / Financial / Support
+   09 — SECONDARY CONTENT PAGES
    ============================================================ */
 
 main.content {
   width: 100%;
 
+  max-width: var(--content-width);
+
   min-height:
     calc(100vh - 170px);
 
-  margin: 0;
+  margin: 0 auto;
 
-  padding:
-    clamp(75px, 10vh, 140px)
-    var(--page-padding)
-    100px;
+  padding-top:
+    clamp(75px, 10vh, 140px);
+
+  padding-bottom: 100px;
 
   background: var(--background);
 }
 
 
-/* Secondary page title */
+/* Secondary-page title */
 
 main.content > h1 {
   width: min(100%, 1100px);
@@ -508,7 +495,7 @@ main.content > h1 {
 }
 
 
-/* Secondary page paragraphs */
+/* Secondary-page paragraphs */
 
 main.content > p {
   width: min(100%, 760px);
@@ -522,7 +509,7 @@ main.content > p {
 
   color: var(--black);
 
-  border-top: 1px solid var(--line);
+  border-top: 1px solid rgba(17, 17, 17, 0.20);
 
   font-size:
     clamp(17px, 1.55vw, 24px);
@@ -530,13 +517,6 @@ main.content > p {
   line-height: 1.4;
 
   letter-spacing: -0.025em;
-}
-
-
-/* Last paragraph */
-
-main.content > p:last-child {
-  margin-bottom: 0;
 }
 
 
@@ -557,63 +537,76 @@ main.content a:hover {
 
 
 /* ============================================================
-   09 — PROJECT PAGE
+   10 — PROJECT PAGE
    ============================================================ */
 
 /*
-   Projects are direct children of <body>.
-   The CSS therefore targets .project directly instead
-   of assuming there is a surrounding <main>.
+   The projects are direct children of <body>.
+
+   Each project becomes a framed interactive panel.
 */
 
-.card {
-  width: 100%;
+.card.project {
+  width: calc(100% - (var(--site-margin) * 2));
 
-  margin: 0;
+  margin-left: var(--site-margin);
+  margin-right: var(--site-margin);
+
+  margin-bottom: 24px;
 
   padding:
-    clamp(30px, 4vw, 58px)
-    var(--page-padding);
+    clamp(32px, 4vw, 58px);
 
-  background: transparent;
+  background: var(--background);
 
-  border: 0;
-
-  border-bottom: 1px solid var(--line);
+  border:
+    var(--project-stroke)
+    solid
+    var(--black);
 
   border-radius: 0;
 
-  box-shadow: none;
+  box-shadow:
+    0 0 0 rgba(17, 17, 17, 0);
+
+  position: relative;
 
   transition:
-    background-color 280ms ease,
-    padding-left 300ms cubic-bezier(0.22, 1, 0.36, 1);
+    transform 300ms var(--transition),
+    box-shadow 300ms var(--transition),
+    background-color 300ms ease;
 }
 
 
-/* Project cards */
+/*
+   Hover creates a physical "raised card" effect.
 
-.card.project {
-  background: transparent;
+   The shadow is offset rather than blurred heavily,
+   giving it a graphic/editorial quality.
+*/
+
+.card.project:hover {
+  background: var(--background-hover);
+
+  transform:
+    translate(-4px, -4px);
+
+  box-shadow:
+    8px 8px 0 var(--black);
 }
 
 
-/* First project gets top border */
-
-.card.project:first-of-type {
-  border-top: 1px solid var(--line);
-}
-
-
-/* Project heading */
+/* ============================================================
+   11 — PROJECT CONTENT
+   ============================================================ */
 
 .project h2 {
-  max-width: 1200px;
+  width: min(100%, 1150px);
 
   margin:
     0
     0
-    18px;
+    20px;
 
   color: var(--black);
 
@@ -629,18 +622,29 @@ main.content a:hover {
   font-weight: 400;
 
   letter-spacing: -0.065em;
+
+  transition:
+    transform 300ms var(--transition);
 }
 
 
-/* Project description */
+/*
+   Slight title movement when the project card
+   becomes interactive.
+*/
+
+.card.project:hover h2 {
+  transform: translateX(3px);
+}
+
 
 .project p {
-  width: min(100%, 670px);
+  width: min(100%, 680px);
 
   margin:
     0
     0
-    24px;
+    25px;
 
   color: var(--grey);
 
@@ -651,7 +655,7 @@ main.content a:hover {
 }
 
 
-/* Project links */
+/* Project link */
 
 .project > a {
   display: inline-block;
@@ -660,7 +664,10 @@ main.content a:hover {
 
   color: var(--black);
 
-  border-bottom: 1px solid var(--black);
+  border-bottom:
+    1px
+    solid
+    var(--black);
 
   font-size: 10px;
 
@@ -673,93 +680,134 @@ main.content a:hover {
   text-transform: uppercase;
 
   transition:
-    opacity var(--transition);
+    opacity var(--transition),
+    transform var(--transition);
 }
 
 .project > a:hover {
-  color: var(--black);
-
-  border-color: var(--black);
-
   opacity: 0.45;
-}
 
-
-/* Project hover */
-
-.card.project:hover {
-  background: var(--background-hover);
-
-  padding-left:
-    calc(var(--page-padding) + 15px);
+  transform: translateX(4px);
 }
 
 
 /* ============================================================
-   10 — CONTRIBUTE
+   12 — PROJECT PAGE SPACING
+   ============================================================ */
+
+/*
+   The first project starts below the navigation instead
+   of touching it.
+*/
+
+header + .card.project {
+  margin-top: 55px;
+}
+
+
+/*
+   Extra breathing room before Contribute.
+*/
+
+.card.project + .contribute {
+  margin-top: 90px;
+}
+
+
+/* ============================================================
+   13 — CONTRIBUTE
    ============================================================ */
 
 .contribute {
   width: 100%;
 
-  padding:
-    clamp(90px, 13vw, 180px)
-    var(--page-padding)
-    80px;
+  margin-top: 110px;
 
-  border-top: 1px solid var(--line);
+  padding-top:
+    clamp(80px, 10vw, 130px);
+
+  padding-bottom: 90px;
+
+  border-top:
+    1px
+    solid
+    rgba(17, 17, 17, 0.20);
 
   background: var(--background);
 }
 
 
-/* Contribute title */
+/*
+   Reduced from the previous oversized treatment.
+
+   Roughly 2–6pt smaller depending on viewport.
+*/
 
 .contribute h3 {
   margin:
     0
     0
-    60px;
+    50px;
 
   color: var(--black);
 
   font-size:
     clamp(
-      55px,
-      9vw,
-      130px
+      49px,
+      8.3vw,
+      124px
     );
 
-  line-height: 0.82;
+  line-height: 0.84;
 
   font-weight: 400;
 
-  letter-spacing: -0.08em;
+  letter-spacing: -0.075em;
 }
 
 
 /* Donation cards */
 
 .contribute .card {
-  padding-left: 0;
-  padding-right: 0;
+  width: 100%;
 
-  border-top: 1px solid var(--line);
-  border-bottom: 0;
+  margin: 0;
+
+  padding:
+    30px
+    0;
+
+  background: transparent;
+
+  border: 0;
+
+  border-top:
+    1px
+    solid
+    rgba(17, 17, 17, 0.20);
+
+  border-radius: 0;
+
+  box-shadow: none;
 }
 
 .contribute .card:last-child {
-  border-bottom: 1px solid var(--line);
+  border-bottom:
+    1px
+    solid
+    rgba(17, 17, 17, 0.20);
 }
 
 .contribute .card:hover {
-  padding-left: 0;
-
   background: transparent;
+
+  transform: none;
+
+  box-shadow: none;
 }
 
 
-/* Donation headings */
+/* Donation title */
 
 .contribute h4 {
   margin:
@@ -784,7 +832,7 @@ main.content a:hover {
 }
 
 
-/* Donation descriptions */
+/* Donation paragraph */
 
 .contribute .card p {
   margin-bottom: 18px;
@@ -806,7 +854,10 @@ main.content a:hover {
 
   color: var(--black);
 
-  border-bottom: 1px solid var(--black);
+  border-bottom:
+    1px
+    solid
+    var(--black);
 
   font-size: 10px;
 
@@ -841,7 +892,7 @@ main.content a:hover {
 
 
 /* ============================================================
-   11 — FOOTER
+   14 — FOOTER
    ============================================================ */
 
 footer {
@@ -851,11 +902,14 @@ footer {
 
   padding:
     22px
-    var(--page-padding);
+    var(--site-margin);
 
   background: var(--background);
 
-  border-top: 1px solid var(--line);
+  border-top:
+    1px
+    solid
+    rgba(17, 17, 17, 0.20);
 
   color: var(--grey);
 
@@ -868,17 +922,14 @@ footer {
 
 
 /* ============================================================
-   12 — FAIL-SAFE ANIMATION
+   15 — SAFE FADE ANIMATION
    ============================================================ */
 
 /*
    IMPORTANT:
+   Elements are visible by default.
 
-   Content starts VISIBLE.
-
-   JavaScript merely adds an animation class.
-   If JS fails, is blocked, or doesn't load,
-   the site remains completely readable.
+   JS only enhances the visual presentation.
 */
 
 .fade-in {
@@ -890,7 +941,7 @@ footer {
 .fade-in.visible {
   animation:
     amariiFadeIn
-    750ms
+    700ms
     cubic-bezier(0.22, 1, 0.36, 1)
     both;
 }
@@ -901,7 +952,7 @@ footer {
     opacity: 0.01;
 
     transform:
-      translateY(20px);
+      translateY(18px);
   }
 
   to {
@@ -914,10 +965,15 @@ footer {
 
 
 /* ============================================================
-   13 — TABLET
+   16 — TABLET
    ============================================================ */
 
 @media (max-width: 900px) {
+
+  :root {
+    --site-margin: clamp(22px, 4vw, 40px);
+  }
+
 
   header {
     min-height: auto;
@@ -955,6 +1011,14 @@ footer {
   }
 
 
+  .card.project {
+    width: calc(100% - (var(--site-margin) * 2));
+
+    margin-left: var(--site-margin);
+    margin-right: var(--site-margin);
+  }
+
+
   .project h2 {
     font-size:
       clamp(
@@ -967,13 +1031,13 @@ footer {
 
 
 /* ============================================================
-   14 — MOBILE
+   17 — MOBILE
    ============================================================ */
 
 @media (max-width: 600px) {
 
   :root {
-    --page-padding: 20px;
+    --site-margin: 20px;
   }
 
 
@@ -1045,6 +1109,7 @@ footer {
       calc(100vh - 130px);
 
     padding-top: 65px;
+
     padding-bottom: 70px;
   }
 
@@ -1068,16 +1133,33 @@ footer {
 
   /* Projects */
 
-  .card {
-    padding-top: 30px;
-    padding-bottom: 35px;
+  header + .card.project {
+    margin-top: 35px;
+  }
+
+
+  .card.project {
+    width: calc(100% - (var(--site-margin) * 2));
+
+    margin-bottom: 18px;
+
+    padding: 28px 24px;
+  }
+
+
+  .card.project:hover {
+    transform:
+      translate(-3px, -3px);
+
+    box-shadow:
+      6px 6px 0 var(--black);
   }
 
 
   .project h2 {
     font-size:
       clamp(
-        36px,
+        35px,
         11vw,
         65px
       );
@@ -1089,26 +1171,28 @@ footer {
   }
 
 
-  .card.project:hover {
-    padding-left: var(--page-padding);
+  /* Contribute */
+
+  .card.project + .contribute {
+    margin-top: 70px;
   }
 
 
-  /* Contribute */
-
   .contribute {
-    padding-top: 90px;
+    margin-top: 80px;
+
+    padding-top: 75px;
   }
 
 
   .contribute h3 {
-    margin-bottom: 50px;
+    margin-bottom: 45px;
 
     font-size:
       clamp(
-        55px,
-        17vw,
-        90px
+        49px,
+        16vw,
+        84px
       );
   }
 
@@ -1122,7 +1206,7 @@ footer {
 
 
 /* ============================================================
-   15 — REDUCED MOTION
+   18 — ACCESSIBILITY
    ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
@@ -1130,6 +1214,7 @@ footer {
   html {
     scroll-behavior: auto;
   }
+
 
   .fade-in,
   .fade-in.visible {
@@ -1140,16 +1225,20 @@ footer {
     animation: none;
   }
 
-  *,
-  *::before,
-  *::after {
-    transition-duration: 0.01ms !important;
+
+  .card.project,
+  .card.project:hover {
+    transition: none;
+
+    transform: none;
+
+    box-shadow: none;
   }
 }
 
 
 /* ============================================================
-   16 — TEXT SELECTION
+   19 — TEXT SELECTION
    ============================================================ */
 
 ::selection {
