@@ -1,34 +1,43 @@
 ```css
 /* ============================================================
    AMARII PRODUCTIONS INC.
-   SITE-WIDE VISUAL SYSTEM
-   Editorial / Contemporary Creative Studio
+   SITE-WIDE CSS
+   Editorial / Creative Studio Visual Direction
+
+   IMPORTANT:
+   - Does NOT require JavaScript to display content.
+   - Does NOT alter HTML content.
+   - Designed around the existing HTML structures.
    ============================================================ */
 
 
 /* ============================================================
-   01. VARIABLES
+   01 — DESIGN VARIABLES
    ============================================================ */
 
 :root {
-  --bg: #e9e7e0;
-  --bg-alt: #dedcd5;
-  --ink: #111111;
-  --muted: #666660;
+  --background: #e8e6df;
+  --background-hover: #dfddd5;
+
+  --black: #111111;
+  --grey: #686863;
+  --light-grey: #a5a39c;
+
   --line: rgba(17, 17, 17, 0.20);
 
-  --page-padding: clamp(22px, 4vw, 64px);
-  --content-width: 1500px;
+  --page-padding: clamp(20px, 4vw, 64px);
 
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --transition: 220ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 
 /* ============================================================
-   02. RESET
+   02 — UNIVERSAL RESET
    ============================================================ */
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -36,7 +45,7 @@ html {
   margin: 0;
   padding: 0;
 
-  background: var(--bg);
+  background: var(--background);
 
   scroll-behavior: smooth;
 }
@@ -47,8 +56,8 @@ body {
 
   min-height: 100vh;
 
-  background: var(--bg);
-  color: var(--ink);
+  background: var(--background);
+  color: var(--black);
 
   font-family:
     Arial,
@@ -59,38 +68,36 @@ body {
   line-height: 1.5;
 
   overflow-x: hidden;
-
-  display: flex;
-  flex-direction: column;
-}
-
-a {
-  color: var(--ink);
-  text-decoration: none;
 }
 
 img {
+  display: block;
   max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
 }
 
 
 /* ============================================================
-   03. TYPOGRAPHY
+   03 — BASIC TYPOGRAPHY
    ============================================================ */
 
 h1,
 h2,
 h3,
-h4,
-p {
-  margin-top: 0;
-}
-
-h1,
-h2,
-h3,
 h4 {
-  color: var(--ink);
+  margin-top: 0;
+  color: var(--black);
 
   font-family:
     Arial,
@@ -100,26 +107,32 @@ h4 {
   font-weight: 400;
 }
 
+p {
+  margin-top: 0;
+}
+
 strong {
-  color: var(--ink);
+  color: var(--black);
   font-weight: 600;
 }
 
 
 /* ============================================================
-   04. HEADER
+   04 — HEADER
    ============================================================ */
 
 /*
-   Handles BOTH types of headers currently used by the site:
+   Supports both existing header structures.
 
-   Full:
+   HOME / PROJECTS:
+
    <header>
      <h1>...</h1>
      <nav>...</nav>
    </header>
 
-   Simple:
+   OTHER PAGES:
+
    <header>
      <a href="index.html">← Home</a>
    </header>
@@ -134,9 +147,9 @@ header {
     25px
     var(--page-padding);
 
-  border-bottom: 1px solid var(--line);
+  background: var(--background);
 
-  background: var(--bg);
+  border-bottom: 1px solid var(--line);
 
   display: flex;
   align-items: flex-start;
@@ -149,10 +162,12 @@ header {
 }
 
 
-/* Site / page heading in full header */
+/* Company / page heading */
 
 header h1 {
   margin: 0;
+
+  color: var(--black);
 
   font-size:
     clamp(18px, 1.5vw, 24px);
@@ -165,47 +180,51 @@ header h1 {
 }
 
 
-/* Simple "← Home" header */
+/* Simple Home link used by Mission,
+   Financial and Support */
 
 header > a {
-  display: inline-flex;
-  align-items: center;
-
-  min-height: 36px;
+  display: inline-block;
 
   padding-bottom: 5px;
 
-  border-bottom: 1px solid var(--ink);
+  color: var(--black);
 
-  font-size: 11px;
+  border-bottom: 1px solid var(--black);
+
+  font-size: 10px;
+
+  line-height: 1;
 
   font-weight: 600;
 
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
 
   text-transform: uppercase;
 
   transition:
-    opacity 180ms ease,
-    transform 180ms ease;
+    opacity var(--transition),
+    transform var(--transition);
 }
 
 header > a:hover {
   opacity: 0.45;
+
   transform: translateX(4px);
 }
 
 
 /* ============================================================
-   05. NAVIGATION
+   05 — NAVIGATION
    ============================================================ */
 
 nav {
   display: flex;
+
   align-items: center;
 
   gap:
-    clamp(18px, 2.7vw, 44px);
+    clamp(18px, 2.8vw, 46px);
 }
 
 nav a {
@@ -215,7 +234,7 @@ nav a {
 
   padding-bottom: 5px;
 
-  color: var(--ink);
+  color: var(--black);
 
   font-size: 10px;
 
@@ -227,7 +246,8 @@ nav a {
 
   text-transform: uppercase;
 
-  transition: opacity 180ms ease;
+  transition:
+    opacity var(--transition);
 }
 
 nav a::after {
@@ -241,45 +261,48 @@ nav a::after {
   width: 100%;
   height: 1px;
 
-  background: var(--ink);
+  background: var(--black);
 
   transform: scaleX(0);
 
   transform-origin: right;
 
   transition:
-    transform 220ms var(--ease);
+    transform var(--transition);
 }
 
-nav a:hover,
-nav a.active {
-  opacity: 0.55;
+nav a:hover {
+  opacity: 0.5;
 }
 
 nav a:hover::after,
 nav a.active::after {
   transform: scaleX(1);
+
   transform-origin: left;
+}
+
+nav a.active {
+  opacity: 0.55;
 }
 
 
 /* ============================================================
-   06. HOME — HERO
+   06 — HOME PAGE
    ============================================================ */
 
 .hero {
   width: 100%;
-  max-width: var(--content-width);
 
   min-height:
     calc(100vh - 88px);
 
-  margin: 0 auto;
-
   padding:
-    clamp(75px, 10vh, 145px)
+    clamp(75px, 10vh, 140px)
     var(--page-padding)
     42px;
+
+  background: var(--background);
 
   display: flex;
   flex-direction: column;
@@ -289,7 +312,8 @@ nav a.active::after {
 
 
 /*
-   Small design-studio style index mark.
+   Small editorial marker.
+   This is a visual CSS element only.
 */
 
 .hero::before {
@@ -298,11 +322,11 @@ nav a.active::after {
   position: absolute;
 
   top:
-    clamp(75px, 10vh, 145px);
+    clamp(75px, 10vh, 140px);
 
   right: var(--page-padding);
 
-  color: var(--muted);
+  color: var(--grey);
 
   font-size: 10px;
 
@@ -312,19 +336,19 @@ nav a.active::after {
 }
 
 
-/* Main homepage headline */
+/* Homepage title */
 
 .hero h2 {
-  max-width: 1250px;
+  width: min(100%, 1250px);
 
   margin: 0;
 
-  color: var(--ink);
+  color: var(--black);
 
   font-size:
     clamp(
-      64px,
-      11.2vw,
+      62px,
+      11.5vw,
       180px
     );
 
@@ -339,12 +363,12 @@ nav a.active::after {
 /* Homepage description */
 
 .hero > p {
-  width: min(100%, 570px);
+  width: min(100%, 590px);
 
   margin-top: auto;
-  margin-bottom: 34px;
+  margin-bottom: 35px;
 
-  color: var(--ink);
+  color: var(--black);
 
   font-size:
     clamp(17px, 1.45vw, 23px);
@@ -356,7 +380,7 @@ nav a.active::after {
 
 
 /* ============================================================
-   07. HOME — BUTTONS / LINKS
+   07 — HOME CTA LINKS
    ============================================================ */
 
 .cta-buttons {
@@ -367,30 +391,36 @@ nav a.active::after {
   display: flex;
   flex-wrap: wrap;
 
-  gap: 10px 38px;
+  align-items: center;
+
+  gap: 10px 40px;
 
   border-top: 1px solid var(--line);
 }
 
 .cta {
   display: inline-flex;
+
   align-items: center;
 
   gap: 11px;
 
-  min-height: 40px;
+  min-height: 38px;
 
   padding: 0;
 
-  border: 0;
-  border-bottom: 1px solid var(--ink);
-  border-radius: 0;
-
   background: transparent;
 
-  color: var(--ink);
+  color: var(--black);
+
+  border: 0;
+  border-bottom: 1px solid var(--black);
+
+  border-radius: 0;
 
   font-size: 10px;
+
+  line-height: 1;
 
   font-weight: 600;
 
@@ -399,8 +429,8 @@ nav a.active::after {
   text-transform: uppercase;
 
   transition:
-    opacity 180ms ease,
-    transform 180ms ease;
+    opacity var(--transition),
+    transform var(--transition);
 }
 
 .cta::after {
@@ -411,13 +441,13 @@ nav a.active::after {
   line-height: 1;
 
   transition:
-    transform 180ms ease;
+    transform var(--transition);
 }
 
 .cta:hover {
-  color: var(--ink);
-
   background: transparent;
+
+  color: var(--black);
 
   opacity: 0.45;
 
@@ -430,38 +460,38 @@ nav a.active::after {
 
 
 /* ============================================================
-   08. SECONDARY PAGES
+   08 — SECONDARY PAGES
    Mission / Financial / Support
    ============================================================ */
 
 main.content {
   width: 100%;
 
-  max-width: var(--content-width);
-
   min-height:
     calc(100vh - 170px);
 
-  margin: 0 auto;
+  margin: 0;
 
   padding:
-    clamp(80px, 11vh, 150px)
+    clamp(75px, 10vh, 140px)
     var(--page-padding)
     100px;
 
-  display: flex;
-  flex-direction: column;
+  background: var(--background);
 }
 
 
-/* Page title */
+/* Secondary page title */
 
 main.content > h1 {
   width: min(100%, 1100px);
 
-  margin: 0 0 clamp(60px, 9vw, 130px);
+  margin:
+    0
+    0
+    clamp(60px, 9vw, 130px);
 
-  color: var(--ink);
+  color: var(--black);
 
   font-size:
     clamp(
@@ -478,47 +508,47 @@ main.content > h1 {
 }
 
 
-/*
-   Body copy is intentionally NOT forced into a
-   centered box or a grid.
-
-   This preserves the natural vertical structure
-   of your existing pages.
-*/
+/* Secondary page paragraphs */
 
 main.content > p {
   width: min(100%, 760px);
 
-  margin: 0 0 28px;
+  margin:
+    0
+    0
+    28px;
 
   padding-top: 22px;
 
+  color: var(--black);
+
   border-top: 1px solid var(--line);
 
-  color: var(--ink);
-
   font-size:
-    clamp(18px, 1.6vw, 25px);
+    clamp(17px, 1.55vw, 24px);
 
-  line-height: 1.38;
+  line-height: 1.4;
 
   letter-spacing: -0.025em;
 }
+
+
+/* Last paragraph */
 
 main.content > p:last-child {
   margin-bottom: 0;
 }
 
 
-/* Links within content */
+/* Content links */
 
 main.content a {
-  color: var(--ink);
+  color: var(--black);
 
-  border-bottom: 1px solid var(--ink);
+  border-bottom: 1px solid var(--black);
 
   transition:
-    opacity 180ms ease;
+    opacity var(--transition);
 }
 
 main.content a:hover {
@@ -527,18 +557,13 @@ main.content a:hover {
 
 
 /* ============================================================
-   09. PROJECTS PAGE
+   09 — PROJECT PAGE
    ============================================================ */
 
 /*
-   Projects currently use:
-
-   <div class="card project fade-in">
-
-   directly inside the body.
-
-   Therefore we style .card globally rather than
-   assuming they live inside main.content.
+   Projects are direct children of <body>.
+   The CSS therefore targets .project directly instead
+   of assuming there is a surrounding <main>.
 */
 
 .card {
@@ -547,7 +572,7 @@ main.content a:hover {
   margin: 0;
 
   padding:
-    clamp(30px, 4vw, 55px)
+    clamp(30px, 4vw, 58px)
     var(--page-padding);
 
   background: transparent;
@@ -561,31 +586,41 @@ main.content a:hover {
   box-shadow: none;
 
   transition:
-    background-color 250ms ease,
-    padding-left 300ms var(--ease);
+    background-color 280ms ease,
+    padding-left 300ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 
-/* First project */
+/* Project cards */
+
+.card.project {
+  background: transparent;
+}
+
+
+/* First project gets top border */
 
 .card.project:first-of-type {
   border-top: 1px solid var(--line);
 }
 
 
-/* Project title */
+/* Project heading */
 
 .project h2 {
-  max-width: 1100px;
+  max-width: 1200px;
 
-  margin: 0 0 18px;
+  margin:
+    0
+    0
+    18px;
 
-  color: var(--ink);
+  color: var(--black);
 
   font-size:
     clamp(
       38px,
-      6vw,
+      5.8vw,
       90px
     );
 
@@ -600,31 +635,36 @@ main.content a:hover {
 /* Project description */
 
 .project p {
-  max-width: 650px;
+  width: min(100%, 670px);
 
-  margin: 0 0 25px;
+  margin:
+    0
+    0
+    24px;
 
-  color: var(--muted);
+  color: var(--grey);
 
   font-size:
-    clamp(15px, 1.1vw, 18px);
+    clamp(15px, 1.05vw, 18px);
 
   line-height: 1.45;
 }
 
 
-/* Project link */
+/* Project links */
 
 .project > a {
   display: inline-block;
 
   padding-bottom: 4px;
 
-  color: var(--ink);
+  color: var(--black);
 
-  border-bottom: 1px solid var(--ink);
+  border-bottom: 1px solid var(--black);
 
   font-size: 10px;
+
+  line-height: 1.2;
 
   font-weight: 600;
 
@@ -632,22 +672,23 @@ main.content a:hover {
 
   text-transform: uppercase;
 
-  transition: opacity 180ms ease;
+  transition:
+    opacity var(--transition);
 }
 
 .project > a:hover {
-  color: var(--ink);
+  color: var(--black);
 
-  border-color: var(--ink);
+  border-color: var(--black);
 
   opacity: 0.45;
 }
 
 
-/* Subtle project hover */
+/* Project hover */
 
 .card.project:hover {
-  background: var(--bg-alt);
+  background: var(--background-hover);
 
   padding-left:
     calc(var(--page-padding) + 15px);
@@ -655,7 +696,7 @@ main.content a:hover {
 
 
 /* ============================================================
-   10. CONTRIBUTE SECTION
+   10 — CONTRIBUTE
    ============================================================ */
 
 .contribute {
@@ -667,13 +708,20 @@ main.content a:hover {
     80px;
 
   border-top: 1px solid var(--line);
+
+  background: var(--background);
 }
 
 
-/* Contribute heading */
+/* Contribute title */
 
 .contribute h3 {
-  margin: 0 0 60px;
+  margin:
+    0
+    0
+    60px;
+
+  color: var(--black);
 
   font-size:
     clamp(
@@ -690,9 +738,7 @@ main.content a:hover {
 }
 
 
-/*
-   Donation cards inside contribute.
-*/
+/* Donation cards */
 
 .contribute .card {
   padding-left: 0;
@@ -700,8 +746,6 @@ main.content a:hover {
 
   border-top: 1px solid var(--line);
   border-bottom: 0;
-
-  background: transparent;
 }
 
 .contribute .card:last-child {
@@ -715,13 +759,22 @@ main.content a:hover {
 }
 
 
-/* Donation title */
+/* Donation headings */
 
 .contribute h4 {
-  margin: 0 0 12px;
+  margin:
+    0
+    0
+    12px;
+
+  color: var(--black);
 
   font-size:
-    clamp(25px, 3vw, 45px);
+    clamp(
+      25px,
+      3vw,
+      45px
+    );
 
   line-height: 1;
 
@@ -731,50 +784,64 @@ main.content a:hover {
 }
 
 
-/* Donation description */
+/* Donation descriptions */
 
 .contribute .card p {
   margin-bottom: 18px;
 
-  color: var(--muted);
+  color: var(--grey);
 
   font-size: 15px;
+
+  line-height: 1.45;
 }
 
 
-/* Donation link */
+/* Donation links */
 
 .contribute .card a {
   display: inline-block;
 
-  padding-bottom: 3px;
+  padding-bottom: 4px;
 
-  border-bottom: 1px solid var(--ink);
+  color: var(--black);
+
+  border-bottom: 1px solid var(--black);
 
   font-size: 10px;
 
+  line-height: 1.2;
+
   font-weight: 600;
 
-  letter-spacing: 0.04em;
+  letter-spacing: 0.045em;
 
   text-transform: uppercase;
+
+  transition:
+    opacity var(--transition);
+}
+
+.contribute .card a:hover {
+  opacity: 0.45;
 }
 
 
-/* ============================================================
-   11. DONATION IMAGE
-   ============================================================ */
+/* Donation image */
 
 .contribute img {
   width: auto;
+
   max-width: 220px;
+
+  height: auto;
 
   margin-top: 10px;
 }
 
 
 /* ============================================================
-   12. FOOTER
+   11 — FOOTER
    ============================================================ */
 
 footer {
@@ -786,11 +853,11 @@ footer {
     22px
     var(--page-padding);
 
+  background: var(--background);
+
   border-top: 1px solid var(--line);
 
-  background: var(--bg);
-
-  color: var(--muted);
+  color: var(--grey);
 
   font-size: 10px;
 
@@ -801,30 +868,53 @@ footer {
 
 
 /* ============================================================
-   13. FADE-IN ANIMATION
+   12 — FAIL-SAFE ANIMATION
    ============================================================ */
 
+/*
+   IMPORTANT:
+
+   Content starts VISIBLE.
+
+   JavaScript merely adds an animation class.
+   If JS fails, is blocked, or doesn't load,
+   the site remains completely readable.
+*/
+
 .fade-in {
-  opacity: 0;
+  opacity: 1;
 
-  transform:
-    translateY(28px);
-
-  transition:
-    opacity 800ms var(--ease),
-    transform 800ms var(--ease);
+  transform: none;
 }
 
 .fade-in.visible {
-  opacity: 1;
+  animation:
+    amariiFadeIn
+    750ms
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
 
-  transform:
-    translateY(0);
+@keyframes amariiFadeIn {
+
+  from {
+    opacity: 0.01;
+
+    transform:
+      translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
 }
 
 
 /* ============================================================
-   14. MOBILE / TABLET
+   13 — TABLET
    ============================================================ */
 
 @media (max-width: 900px) {
@@ -837,6 +927,7 @@ footer {
     gap: 24px;
   }
 
+
   nav {
     width: 100%;
 
@@ -845,9 +936,11 @@ footer {
     gap: 14px 22px;
   }
 
+
   .hero {
     min-height: 760px;
   }
+
 
   .hero::before {
     position: static;
@@ -855,23 +948,26 @@ footer {
     margin-bottom: 35px;
   }
 
+
   main.content {
-    min-height: calc(100vh - 140px);
+    min-height:
+      calc(100vh - 150px);
   }
+
 
   .project h2 {
     font-size:
       clamp(
         38px,
         8vw,
-        70px
+        72px
       );
   }
 }
 
 
 /* ============================================================
-   15. MOBILE
+   14 — MOBILE
    ============================================================ */
 
 @media (max-width: 600px) {
@@ -888,13 +984,16 @@ footer {
     padding-bottom: 20px;
   }
 
+
   header h1 {
     font-size: 18px;
   }
 
+
   nav {
     gap: 12px 18px;
   }
+
 
   nav a {
     font-size: 9px;
@@ -910,6 +1009,7 @@ footer {
     padding-bottom: 25px;
   }
 
+
   .hero h2 {
     font-size:
       clamp(
@@ -921,11 +1021,13 @@ footer {
     line-height: 0.84;
   }
 
+
   .hero > p {
     font-size: 17px;
 
     margin-bottom: 28px;
   }
+
 
   .cta-buttons {
     flex-direction: column;
@@ -939,9 +1041,13 @@ footer {
   /* Secondary pages */
 
   main.content {
+    min-height:
+      calc(100vh - 130px);
+
     padding-top: 65px;
     padding-bottom: 70px;
   }
+
 
   main.content > h1 {
     margin-bottom: 65px;
@@ -953,6 +1059,7 @@ footer {
         90px
       );
   }
+
 
   main.content > p {
     font-size: 18px;
@@ -966,6 +1073,7 @@ footer {
     padding-bottom: 35px;
   }
 
+
   .project h2 {
     font-size:
       clamp(
@@ -975,9 +1083,11 @@ footer {
       );
   }
 
+
   .project p {
     font-size: 15px;
   }
+
 
   .card.project:hover {
     padding-left: var(--page-padding);
@@ -989,6 +1099,7 @@ footer {
   .contribute {
     padding-top: 90px;
   }
+
 
   .contribute h3 {
     margin-bottom: 50px;
@@ -1011,13 +1122,8 @@ footer {
 
 
 /* ============================================================
-   16. ACCESSIBILITY
+   15 — REDUCED MOTION
    ============================================================ */
-
-::selection {
-  background: var(--ink);
-  color: var(--bg);
-}
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -1025,10 +1131,13 @@ footer {
     scroll-behavior: auto;
   }
 
-  .fade-in {
+  .fade-in,
+  .fade-in.visible {
     opacity: 1;
+
     transform: none;
-    transition: none;
+
+    animation: none;
   }
 
   *,
@@ -1036,5 +1145,16 @@ footer {
   *::after {
     transition-duration: 0.01ms !important;
   }
+}
+
+
+/* ============================================================
+   16 — TEXT SELECTION
+   ============================================================ */
+
+::selection {
+  background: var(--black);
+
+  color: var(--background);
 }
 ```
