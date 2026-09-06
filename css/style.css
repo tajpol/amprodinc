@@ -1,284 +1,310 @@
 ```css
 /* ============================================================
-   Amarii Productions Inc — EDITORIAL EXPERIENCE DESIGN
-   Visual direction: refined, minimal, editorial, tactile
-   Content/HTML remains unchanged.
+   AMARII PRODUCTIONS INC.
+   Editorial / Experience Design Direction
+   Inspired by contemporary design consultancies
    ============================================================ */
 
-/* ---------- Design Tokens ---------- */
+
+/* ============================================================
+   01 — VARIABLES
+   ============================================================ */
 
 :root {
-  --paper: #f3f1eb;
-  --paper-deep: #e9e7e0;
-  --ink: #111111;
-  --muted: #6e6d68;
-  --line: #c9c7c0;
-  --white: #ffffff;
+  --bg: #e8e6df;
+  --bg-dark: #161616;
+  --text: #111111;
+  --muted: #686863;
+  --line: rgba(17, 17, 17, 0.22);
+  --white: #f5f4ef;
 
-  --page-padding: clamp(1.25rem, 4vw, 4.5rem);
-  --section-space: clamp(6rem, 14vw, 12rem);
+  --pad: clamp(24px, 4vw, 64px);
+  --max-width: 1600px;
 }
 
 
-/* ---------- Reset ---------- */
+/* ============================================================
+   02 — RESET
+   ============================================================ */
 
-* {
-  margin: 0;
-  padding: 0;
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 html {
+  margin: 0;
+  padding: 0;
   scroll-behavior: smooth;
 }
 
 body {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.4;
-  min-height: 100vh;
-  overflow-x: hidden;
-
-  display: flex;
-  flex-direction: column;
-}
-
-
-/* ---------- Typography ---------- */
-
-h1,
-h2,
-h3,
-p,
-a {
   margin: 0;
+  padding: 0;
+
+  min-height: 100vh;
+
+  background: var(--bg);
+  color: var(--text);
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 16px;
+  line-height: 1.4;
+
+  overflow-x: hidden;
 }
 
-h1,
-h2,
-h3 {
-  font-family: Arial, Helvetica, sans-serif;
-  color: var(--ink);
-}
-
-h1 {
-  font-size: clamp(1.2rem, 1.8vw, 1.65rem);
-  line-height: 1;
-  font-weight: 700;
-  letter-spacing: -0.04em;
-}
-
-h2 {
-  font-size: clamp(4rem, 10vw, 10rem);
-  line-height: 0.84;
-  font-weight: 500;
-  letter-spacing: -0.075em;
-  max-width: 1100px;
-}
-
-h3 {
-  font-size: 1.5rem;
-  line-height: 1;
-  font-weight: 500;
-}
-
-p,
-li,
-span {
-  color: var(--ink);
-  font-size: 1rem;
+img {
+  max-width: 100%;
+  display: block;
 }
 
 a {
-  color: var(--ink);
+  color: inherit;
   text-decoration: none;
 }
 
 
-/* ---------- Header ---------- */
+/* ============================================================
+   03 — TYPOGRAPHY
+   ============================================================ */
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 0;
+
+  color: var(--text);
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-weight: 400;
+}
+
+p {
+  margin: 0;
+}
+
+
+/* ============================================================
+   04 — HEADER
+   ============================================================ */
 
 header {
   width: 100%;
-  padding: 1.6rem var(--page-padding);
+  min-height: 90px;
 
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 2rem;
+  padding:
+    24px
+    var(--pad);
 
-  background: var(--paper);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+
+  gap: 40px;
+
   border-bottom: 1px solid var(--line);
 
+  background: var(--bg);
+
   position: relative;
-  z-index: 10;
+  z-index: 20;
 }
 
+
+/* Company name */
+
 header h1 {
-  max-width: 240px;
+  max-width: 280px;
+
+  font-size: clamp(18px, 1.4vw, 23px);
+  line-height: 1;
+
+  font-weight: 600;
+  letter-spacing: -0.045em;
 }
+
+
+/* Navigation */
 
 nav {
   display: flex;
-  align-items: flex-start;
-  gap: clamp(1.25rem, 3vw, 3rem);
+  align-items: center;
+  gap: clamp(20px, 2.8vw, 48px);
 }
 
 nav a {
-  position: relative;
+  display: block;
 
-  font-size: 0.75rem;
+  padding-bottom: 4px;
+
+  color: var(--text);
+
+  font-size: 11px;
   line-height: 1;
+
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
+
   text-transform: uppercase;
 
-  color: var(--ink);
+  border-bottom: 1px solid transparent;
 
   transition:
     opacity 180ms ease,
-    transform 180ms ease;
-}
-
-nav a::after {
-  content: "";
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -0.35rem;
-
-  height: 1px;
-  background: var(--ink);
-
-  transform: scaleX(0);
-  transform-origin: right;
-
-  transition: transform 200ms ease;
+    border-color 180ms ease;
 }
 
 nav a:hover {
-  opacity: 0.55;
-  transform: translateY(-1px);
-}
-
-nav a:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
+  opacity: 0.5;
+  border-bottom-color: var(--text);
 }
 
 
-/* ---------- Hero ---------- */
+/* ============================================================
+   05 — HERO
+   ============================================================ */
 
 .hero {
-  min-height: calc(100vh - 85px);
+  width: 100%;
+  max-width: var(--max-width);
 
-  padding: var(--section-space) var(--page-padding);
+  min-height: calc(100vh - 90px);
+
+  margin: 0 auto;
+
+  padding:
+    clamp(70px, 10vh, 140px)
+    var(--pad)
+    48px;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
   position: relative;
-
-  border-bottom: 1px solid var(--line);
 }
 
 
-/*
-   Small editorial marker above the headline.
-   This does not alter your content; it simply uses CSS
-   to create a visual detail.
-*/
+/* Small editorial index */
 
 .hero::before {
-  content: "01";
+  content: "— 01";
 
-  display: block;
+  position: absolute;
 
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  top: clamp(70px, 10vh, 140px);
+  right: var(--pad);
 
   color: var(--muted);
 
-  margin-bottom: 4rem;
+  font-size: 11px;
+  line-height: 1;
+
+  letter-spacing: 0.04em;
 }
 
 
 /* Main headline */
 
 .hero h2 {
-  margin-bottom: clamp(4rem, 9vw, 8rem);
+  width: min(100%, 1250px);
 
-  max-width: 1200px;
+  margin: 0;
+
+  font-size:
+    clamp(
+      64px,
+      11.5vw,
+      190px
+    );
+
+  line-height: 0.82;
+
+  font-weight: 400;
+
+  letter-spacing: -0.085em;
+
+  text-wrap: balance;
 }
 
 
 /* Description */
 
 .hero p {
-  max-width: 560px;
+  width: min(100%, 580px);
 
-  font-size: clamp(1.05rem, 1.5vw, 1.35rem);
-  line-height: 1.35;
-  font-weight: 400;
+  margin-top: auto;
+  margin-bottom: 36px;
+
+  font-size: clamp(17px, 1.45vw, 23px);
+
+  line-height: 1.3;
+
   letter-spacing: -0.025em;
 
-  color: var(--ink);
+  color: var(--text);
 }
 
 
-/* ---------- CTA Area ---------- */
+/* ============================================================
+   06 — CTA
+   ============================================================ */
 
 .cta-buttons {
-  margin-top: 3rem;
+  width: 100%;
+
+  padding-top: 20px;
 
   display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem 3rem;
+  align-items: center;
+  gap: 12px 40px;
+
+  border-top: 1px solid var(--line);
 }
 
 .cta {
   display: inline-flex;
   align-items: center;
-  gap: 1rem;
+  gap: 12px;
 
-  padding: 0 0 0.45rem;
+  min-height: 40px;
 
-  background: transparent;
-  color: var(--ink);
+  color: var(--text);
 
-  border: none;
-  border-bottom: 1px solid var(--ink);
-  border-radius: 0;
-
-  font-size: 0.8rem;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.04em;
+
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 
   transition:
     opacity 180ms ease,
-    padding 180ms ease;
+    transform 180ms ease;
 }
 
 .cta::after {
   content: "↗";
 
-  font-size: 1rem;
+  font-size: 15px;
   line-height: 1;
 
   transition: transform 180ms ease;
 }
 
 .cta:hover {
-  background: transparent;
-  color: var(--ink);
-
-  opacity: 0.55;
-
-  transform: none;
+  opacity: 0.45;
+  transform: translateX(3px);
 }
 
 .cta:hover::after {
@@ -286,138 +312,188 @@ nav a:hover::after {
 }
 
 
-/* ---------- Existing Main Content ---------- */
+/* ============================================================
+   07 — MAIN CONTENT
+   ============================================================ */
 
 main.content {
-  flex: 1;
-
   width: 100%;
-  max-width: none;
+  max-width: var(--max-width);
 
-  margin: 0;
-  padding: var(--section-space) var(--page-padding);
+  margin: 0 auto;
+
+  padding:
+    100px
+    var(--pad);
 }
 
 
-/* ---------- Cards ---------- */
+/* ============================================================
+   08 — CARDS
+   ============================================================ */
 
 .card {
+  margin: 0;
+
+  padding:
+    28px
+    0;
+
   background: transparent;
 
-  border: none;
+  border: 0;
   border-top: 1px solid var(--line);
+
   border-radius: 0;
-
-  padding: 2rem 0;
-
-  margin: 0;
 
   box-shadow: none;
 
   transition:
-    padding 250ms ease,
-    background-color 250ms ease;
+    padding-left 250ms ease,
+    background 250ms ease;
 }
 
-.card:hover {
-  transform: none;
-  background-color: transparent;
-  box-shadow: none;
-
-  padding-left: 1rem;
-}
-
-
-/* ---------- Projects ---------- */
-
-.project {
+.card:last-child {
   border-bottom: 1px solid var(--line);
 }
 
+.card:hover {
+  padding-left: 20px;
+
+  background: transparent;
+
+  transform: none;
+  box-shadow: none;
+}
+
+
+/* ============================================================
+   09 — PROJECTS
+   ============================================================ */
+
 .project h3 {
-  font-size: clamp(1.5rem, 3vw, 2.75rem);
+  margin-bottom: 12px;
 
-  margin-bottom: 1rem;
+  font-size:
+    clamp(30px, 4vw, 62px);
 
-  font-weight: 500;
-  letter-spacing: -0.04em;
+  line-height: 0.95;
+
+  font-weight: 400;
+
+  letter-spacing: -0.06em;
 }
 
 .project p {
   max-width: 600px;
 
+  margin-bottom: 20px;
+
   color: var(--muted);
 
-  margin-bottom: 1.5rem;
+  font-size: 15px;
+  line-height: 1.45;
 }
 
 .project a {
   display: inline-block;
 
-  color: var(--ink);
+  padding-bottom: 3px;
 
-  font-size: 0.8rem;
+  border-bottom: 1px solid var(--text);
+
+  color: var(--text);
+
+  font-size: 11px;
   font-weight: 600;
+
   letter-spacing: 0.04em;
+
   text-transform: uppercase;
 
-  border-bottom: 1px solid var(--ink);
-
-  padding-bottom: 0.3rem;
+  transition:
+    opacity 180ms ease;
 }
 
 .project a:hover {
-  color: var(--muted);
-  border-color: var(--muted);
+  color: var(--text);
+  border-color: var(--text);
+  opacity: 0.45;
 }
 
 
-/* ---------- Contact Section ---------- */
+/* ============================================================
+   10 — CONTACT
+   ============================================================ */
 
 .contact-section {
-  padding: var(--section-space) var(--page-padding);
+  width: 100%;
 
-  min-height: 70vh;
+  padding:
+    clamp(100px, 15vw, 240px)
+    var(--pad)
+    100px;
 
   border-top: 1px solid var(--line);
 }
+
+
+/* Heading */
 
 .contact-section .contact-heading {
-  font-size: clamp(4rem, 10vw, 10rem);
-  line-height: 0.84;
+  margin: 0 0 80px;
 
-  font-weight: 500;
-  letter-spacing: -0.075em;
+  font-size:
+    clamp(
+      70px,
+      13vw,
+      210px
+    );
 
-  margin-bottom: 5rem;
+  line-height: 0.78;
+
+  font-weight: 400;
+
+  letter-spacing: -0.09em;
 }
 
 
-/* Contact grid */
+/* Grid */
 
 .contact-grid {
+  width: 100%;
+
   display: grid;
-  grid-template-columns: minmax(200px, 0.7fr) minmax(300px, 1.3fr);
 
-  gap: 4rem;
+  grid-template-columns:
+    minmax(180px, 0.65fr)
+    minmax(300px, 1.35fr);
 
-  padding-top: 2rem;
+  gap: 60px;
+
+  padding-top: 24px;
 
   border-top: 1px solid var(--line);
 }
 
+
+/* Details */
+
 .contact-details {
-  font-size: 0.85rem;
   color: var(--muted);
+
+  font-size: 13px;
 }
 
 .contact-details p {
-  margin-bottom: 1.5rem;
+  max-width: 300px;
 
-  font-size: 0.9rem;
-  line-height: 1.45;
+  margin-bottom: 24px;
 
   color: var(--muted);
+
+  font-size: 13px;
+  line-height: 1.45;
 }
 
 
@@ -426,237 +502,268 @@ main.content {
 .social-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem 1.5rem;
+  gap: 12px 24px;
 }
 
 .social-links a {
-  margin-right: 0;
+  color: var(--text);
 
-  color: var(--ink);
-
-  font-size: 0.75rem;
+  font-size: 10px;
   font-weight: 600;
-  letter-spacing: 0.04em;
+
+  letter-spacing: 0.05em;
+
   text-transform: uppercase;
 
-  border-bottom: 1px solid var(--ink);
-  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--text);
+
+  padding-bottom: 3px;
+
+  transition:
+    opacity 180ms ease;
 }
 
 .social-links a:hover {
-  color: var(--muted);
-  border-color: var(--muted);
+  opacity: 0.45;
 }
 
 
-/* Contact right side */
+/* Contact main */
 
 .contact-main {
   text-align: right;
-
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
 }
 
 .contact-main .phone-number {
-  font-size: clamp(2.5rem, 6vw, 6rem);
+  margin: 0 0 24px;
 
-  font-weight: 500;
+  color: var(--text);
+
+  font-size:
+    clamp(
+      32px,
+      5.5vw,
+      88px
+    );
+
   line-height: 0.9;
 
-  letter-spacing: -0.065em;
+  font-weight: 400;
 
-  margin-bottom: 1rem;
-
-  color: var(--ink);
+  letter-spacing: -0.07em;
 }
 
 .contact-main .location-name {
-  font-size: clamp(4rem, 11vw, 11rem);
+  margin: 0;
 
-  font-weight: 500;
-  line-height: 0.82;
+  color: var(--text);
 
-  letter-spacing: -0.08em;
+  font-size:
+    clamp(
+      64px,
+      13vw,
+      210px
+    );
 
-  margin-top: 0;
+  line-height: 0.78;
 
-  color: var(--ink);
+  font-weight: 400;
+
+  letter-spacing: -0.095em;
 }
 
 
-/* ---------- Footer ---------- */
+/* ============================================================
+   11 — FOOTER
+   ============================================================ */
 
 footer {
   width: 100%;
 
-  padding: 1.5rem var(--page-padding);
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding:
+    22px
+    var(--pad);
 
   border-top: 1px solid var(--line);
 
-  background: var(--paper);
-
   color: var(--muted);
 
-  font-size: 0.7rem;
-  line-height: 1.3;
+  background: var(--bg);
+
+  font-size: 10px;
+
   letter-spacing: 0.02em;
 }
 
 
-/* ---------- Fade In ---------- */
+/* ============================================================
+   12 — ANIMATION
+   ============================================================ */
 
 .fade-in {
-  animation: fadeIn 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  opacity: 0;
+
+  transform:
+    translateY(35px);
+
+  transition:
+    opacity 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
+.fade-in.visible {
+  opacity: 1;
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-
-/* ---------- Selection ---------- */
-
-::selection {
-  background: var(--ink);
-  color: var(--paper);
+  transform:
+    translateY(0);
 }
 
 
-/* ---------- Responsive: Tablet ---------- */
+/* ============================================================
+   13 — RESPONSIVE
+   ============================================================ */
 
-@media (max-width: 992px) {
-
-  :root {
-    --page-padding: 2rem;
-  }
+@media (max-width: 900px) {
 
   header {
-    padding-top: 1.4rem;
-    padding-bottom: 1.4rem;
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 
   nav {
-    gap: 1.25rem;
+    flex-wrap: wrap;
+    gap: 15px 24px;
   }
 
   .hero {
-    min-height: 80vh;
+    min-height: 780px;
   }
 
   .hero::before {
-    margin-bottom: 3rem;
+    position: static;
+
+    margin-bottom: 30px;
+
+    order: -1;
+  }
+
+  .hero h2 {
+    font-size:
+      clamp(
+        58px,
+        12vw,
+        110px
+      );
   }
 
   .contact-grid {
     grid-template-columns: 1fr;
-    gap: 4rem;
+    gap: 80px;
   }
 
   .contact-main {
-    align-items: flex-start;
-    text-align: left;
-  }
-
-  .contact-main .location-name {
     text-align: left;
   }
 }
 
 
-/* ---------- Responsive: Mobile ---------- */
-
-@media (max-width: 700px) {
+@media (max-width: 600px) {
 
   :root {
-    --page-padding: 1.25rem;
-    --section-space: 5rem;
+    --pad: 20px;
   }
 
   header {
-    flex-direction: column;
-    gap: 1.75rem;
+    min-height: auto;
+
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 
   header h1 {
-    max-width: none;
+    max-width: 220px;
+
+    font-size: 18px;
   }
 
   nav {
-    width: 100%;
-
-    display: flex;
-    flex-wrap: wrap;
-
-    gap: 0.75rem 1.25rem;
+    gap: 13px 18px;
   }
 
   nav a {
-    font-size: 0.68rem;
+    font-size: 9px;
   }
 
   .hero {
-    min-height: 85vh;
+    min-height: 720px;
 
-    padding-top: 5rem;
-    padding-bottom: 4rem;
-  }
-
-  .hero::before {
-    margin-bottom: 2.5rem;
+    padding-top: 60px;
+    padding-bottom: 30px;
   }
 
   .hero h2 {
-    font-size: clamp(3.7rem, 17vw, 6rem);
-    line-height: 0.85;
+    font-size:
+      clamp(
+        52px,
+        16vw,
+        90px
+      );
 
-    margin-bottom: 4rem;
+    line-height: 0.84;
   }
 
   .hero p {
-    font-size: 1rem;
-    max-width: 100%;
+    margin-bottom: 30px;
+
+    font-size: 17px;
   }
 
   .cta-buttons {
-    gap: 1.25rem 2rem;
-    margin-top: 2.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 4px;
+  }
+
+  main.content {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+
+  .contact-section {
+    padding-top: 100px;
+    padding-bottom: 70px;
   }
 
   .contact-section .contact-heading {
-    font-size: clamp(3.7rem, 17vw, 6rem);
-  }
+    margin-bottom: 60px;
 
-  .contact-main .phone-number {
-    font-size: 2.7rem;
+    font-size:
+      clamp(
+        58px,
+        17vw,
+        95px
+      );
   }
 
   .contact-main .location-name {
-    font-size: clamp(4rem, 18vw, 7rem);
+    font-size:
+      clamp(
+        55px,
+        18vw,
+        100px
+      );
   }
 
   footer {
-    display: block;
-    padding-top: 1.25rem;
-    padding-bottom: 1.25rem;
+    font-size: 9px;
   }
 }
 
 
-/* ---------- Reduced Motion ---------- */
+/* ============================================================
+   14 — ACCESSIBILITY
+   ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
 
@@ -664,14 +771,27 @@ footer {
     scroll-behavior: auto;
   }
 
-  .fade-in {
-    animation: none;
-  }
-
   *,
   *::before,
   *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+
+  .fade-in {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+/* ============================================================
+   15 — TEXT SELECTION
+   ============================================================ */
+
+::selection {
+  background: var(--text);
+  color: var(--bg);
 }
 ```
