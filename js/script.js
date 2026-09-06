@@ -1,11 +1,25 @@
-// Simple scroll animation trigger
+```js
 document.addEventListener("DOMContentLoaded", () => {
-  const fadeElems = document.querySelectorAll('.fade-in');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, { threshold: 0.2 });
+  const fadeElems = document.querySelectorAll(".fade-in");
 
-  fadeElems.forEach(el => observer.observe(el));
+  if (!fadeElems.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.12
+    }
+  );
+
+  fadeElems.forEach((element) => {
+    observer.observe(element);
+  });
 });
+```
